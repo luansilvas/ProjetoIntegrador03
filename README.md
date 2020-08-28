@@ -6,3 +6,6 @@ Eduardo Rocha da Silva;
 Gustavo Moraes Lima;
 Jaqueline dos Santos;
 Luan Silva dos Santos.
+
+Nossa área de atuação: Móveis planejados para escritório
+Nome do grupo : MoovOffice
