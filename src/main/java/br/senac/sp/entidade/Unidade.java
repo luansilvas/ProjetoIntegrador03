@@ -11,7 +11,7 @@ package br.senac.sp.entidade;
  */
 public class Unidade {
     private int codUnidade;
-    private String descricao;
+    private String nome;
 
     public int getCodUnidade() {
         return codUnidade;
@@ -21,14 +21,15 @@ public class Unidade {
         this.codUnidade = codUnidade;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    
+
+
     
     
 }

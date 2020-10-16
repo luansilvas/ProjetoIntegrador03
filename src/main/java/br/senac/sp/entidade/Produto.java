@@ -15,6 +15,8 @@ public class Produto extends Unidade {
     private String titulo;
     private String categoria;
 
+
+
     public int getCodProduto() {
         return codProduto;
     }

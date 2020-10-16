@@ -15,6 +15,35 @@ private double valor;
 private int status;
 private int quantidade;
 
+
+    public ProdutoUnidade(int codProduto, String titulo, String categoria, String foto, String descricao, double valor, int quantidade, int status){
+    this.valor = valor;
+    this.status = status;
+    this.quantidade = quantidade;
+    this.setCodProduto(codProduto);
+    this.setTitulo(titulo);
+    this.setCategoria(categoria);
+    this.setDescricao(descricao);
+    this.setFoto(foto);
+
+}
+
+    public ProdutoUnidade(int codProdutoUnidade,double valor,int status, int quantidade,int codProduto, String titulo, String categoria,String descricao,String foto, int codUnidade,String nome){
+    this.codProdUnidade = codProdutoUnidade;
+    this.valor = valor;
+    this.status = status;
+    this.quantidade = quantidade;
+    this.setCodProduto(codProduto);
+    this.setTitulo(titulo);
+    this.setCategoria(categoria);
+    this.setDescricao(descricao);
+    this.setFoto(foto);
+    this.setCodUnidade(codUnidade);
+    this.setNome(nome);
+}
+
+
+
     public int getCodProdUnidade() {
         return codProdUnidade;
     }
