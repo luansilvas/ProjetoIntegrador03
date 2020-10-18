@@ -5,8 +5,11 @@
  */
 package br.senac.sp.servlet;
 
+import br.senac.sp.dao.ProdutoDAO;
+import br.senac.sp.entidade.ProdutoUnidade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,60 +30,41 @@ public class AlterarProduto extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AlteraProduto</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AlteraProduto at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int codProduto = Integer.parseInt(request.getParameter("codProduto"));
+        ProdutoUnidade produto = ProdutoDAO.getProduto(codProduto);
+        request.setAttribute("produto", produto);
+
+        RequestDispatcher requestDispatcher = getServletContext()
+                .getRequestDispatcher("/alterarProduto.jsp");
+        requestDispatcher.forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+    
+            ProdutoUnidade prod = new ProdutoUnidade();
+            prod.setTitulo(request.getParameter("titulo"));
+            prod.setCategoria(request.getParameter("categoria"));
+            prod.setDescricao(request.getParameter("descricao"));
+            prod.setValor(Double.parseDouble(request.getParameter("valor")));
+            prod.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+            prod.setCodUnidade(Integer.parseInt(request.getParameter("unidade")));
 
+            prod.setCodProduto(Integer.parseInt(request.getParameter("codProduto")));
+            prod.setStatus(1);
+            if (ProdutoDAO.updateProduto(prod)) {
+                response.sendRedirect("sucessoProduto.jsp?");
+
+            } else {
+
+                response.sendRedirect("sucessoProduto.jsp?");
+
+            }
+        } 
+    
 }
