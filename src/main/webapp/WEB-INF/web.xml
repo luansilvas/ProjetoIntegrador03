@@ -28,6 +28,14 @@
         <servlet-name>teste</servlet-name>
         <servlet-class>br.senac.sp.servlet.teste</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarCliente</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ListarCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastrarCliente</servlet-name>
+        <servlet-class>br.senac.sp.servlet.CadastrarCliente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AlterarProduto</servlet-name>
         <url-pattern>/AlterarProduto</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>teste</servlet-name>
         <url-pattern>/teste</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarCliente</servlet-name>
+        <url-pattern>/ListarCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarCliente</servlet-name>
+        <url-pattern>/CadastrarCliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

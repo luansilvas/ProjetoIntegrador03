@@ -62,7 +62,7 @@
   
         <li class="white"><a href="index.jsp"><i><img src="icons\store.png"></i>Loja</a> 
          
-        <li class="white"><a href="#"><i><img src="icons\customer.png"></i>Clientes</a> 
+        <li class="white"><a href="ListarCliente"><i><img src="icons\customer.png"></i>Clientes</a> 
         <li class="white"><a href="ListarProdutos"><i><img src="icons\product.png"></i>Produtos</a> 
         <li class="white"><a href="#"><i><img src="icons\employee.png"></i>Funcionários</a>
         <li class="white"><a href="#"><i><img src="icons\bar-chart.png"></i>Vendas</a> 
