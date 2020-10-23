@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%@include file="menu.jsp"%>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de Clientes</title>
@@ -26,7 +27,7 @@
                 <th>Telefone</th>         
                 </thead>
                 <tbody>
-                    <c:forEach items="${listaclientes}" var="c">
+                    <c:forEach items="${listaClientes}" var="c">
                     <th style="text-align: center">
                     <td>${c.nome}</td>
                     <td>${c.cpf}</td>
@@ -49,13 +50,9 @@
 
         }
 
-        img{
-            width: 160%;
-
-        }
         .side-nav li
         a {
-            padding: 0 16px;
+            padding: 0 20px;
 
         }
 
@@ -77,7 +74,7 @@
 
         }
         .tabela{
-            margin:5%;
+            margin:6%;
 
         }
         #adicionar{
