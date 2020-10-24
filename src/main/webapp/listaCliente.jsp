@@ -16,30 +16,30 @@
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
-
         <div class="tabela">
-            <a class="btn-flat"  id="adicionar" href="CadastrarCliente.jsp">add<i class="material-icons right">add</i></a>
+            <a class="btn-flat"  id="adicionar" href="cadastrarCliente.jsp">add<i class="material-icons right">add</i></a>
             <table class="striped">
-                <thead style="text-align: left">
+                <thead style="text-align: left"> 
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>E-mail</th>
-                <th>Telefone</th>         
+                <th>Telefone</th>
+                <th>Ações</th>
                 </thead>
                 <tbody>
                     <c:forEach items="${listaClientes}" var="c">
-                    <th style="text-align: center">
-                    <td>${c.nome}</td>
-                    <td>${c.cpf}</td>
-                    <td>${c.email}</td>
-                    <td>${c.telefone}</td>
-                    <td>
-                        <a href="verProduto?codProduto=${produto.codProduto}"><i class="material-icons">search</i></a>
-                        <a href="AlterarProduto?codProduto=${produto.codProduto}" ><i class="material-icons">edit</i></a>
-                        <a onClick="excluir(${produto.codProduto})"><i class="material-icons">delete</i></a>
-                    </td>
-                    </th>
-                </c:forEach>
+                        <tr style="text-align: center">
+                            <td>${c.nome}</td>
+                            <td>${c.cpf}</td>
+                            <td>${c.email}</td>
+                            <td>${c.telefone}</td>
+                            <td>
+                                <a href=""><i class="material-icons">search</i></a>
+                                <a href="AlteraCliente?cpf=${c.cpf}" ><i class="material-icons">edit</i></a>
+                                <a href="ExcluirCliente?cpf=${c.cpf}"><i class="material-icons">delete</i></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

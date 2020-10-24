@@ -8,7 +8,6 @@ package br.senac.sp.servlet;
 import br.senac.sp.dao.ProdutoDAO;
 import br.senac.sp.entidade.ProdutoUnidade;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
