@@ -43,13 +43,14 @@ public class AlteraCliente extends HttpServlet {
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
+        int codUnidade = Integer.parseInt(request.getParameter("unidade"));
         
         Cliente cliente = ClienteDAO.getClientes(cpf);
         cliente.setNome(nome);
         cliente.setEmail(email);
         cliente.setTelefone(telefone);
         
-        if(ClienteDAO.updateCliente(cliente)){
+        if(ClienteDAO.updateCliente(cliente, codUnidade)){
             response.sendRedirect("sucessoCliente.jsp");
         }
         

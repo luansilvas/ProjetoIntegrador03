@@ -174,7 +174,7 @@ public class ClienteDAO {
         return clientes;
     }
 
-    public static boolean updateCliente(Cliente cliente) {
+    public static boolean updateCliente(Cliente cliente, int codUnidade) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -186,12 +186,13 @@ public class ClienteDAO {
 
             conexao = DriverManager.getConnection(URL, "root", "");
 
-            instrucaoSQL = conexao.prepareStatement("update Cliente set nome=?,email=?,telefone=? where cpf=?");
+            instrucaoSQL = conexao.prepareStatement("update Cliente set nome=?,email=?,telefone=?,Unidade_codUnidade=?  where cpf=?");
 
             instrucaoSQL.setString(1, cliente.getNome());
             instrucaoSQL.setString(2, cliente.getEmail());
             instrucaoSQL.setString(3, cliente.getTelefone());
-            instrucaoSQL.setString(4, cliente.getCpf());
+            instrucaoSQL.setInt(4, codUnidade);
+            instrucaoSQL.setString(5, cliente.getCpf());            
             instrucaoSQL.execute();
 
         } catch (SQLException | ClassNotFoundException ex) {
