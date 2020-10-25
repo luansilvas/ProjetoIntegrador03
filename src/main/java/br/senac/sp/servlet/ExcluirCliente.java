@@ -6,8 +6,8 @@
 package br.senac.sp.servlet;
 
 import br.senac.sp.dao.ClienteDAO;
-import br.senac.sp.entidade.Cliente;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,24 +17,18 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Gustavo
  */
-public class CadastrarCliente extends HttpServlet {
+public class ExcluirCliente extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
-        String email = request.getParameter("email");
-        String telefone = request.getParameter("telefone");
-        int codUnidade = Integer.parseInt(request.getParameter("unidade"));
-
-        Cliente cliente = new Cliente(nome, cpf, email, telefone);
-
-        if (ClienteDAO.addCliente(cliente, codUnidade)) {
+        
+        if (ClienteDAO.deleteCliente(cpf)) {
             response.sendRedirect("sucessoCliente.jsp");
         } else {
-
+            response.sendRedirect("ListarClientes");
         }
     }
 }

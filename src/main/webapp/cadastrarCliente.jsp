@@ -1,5 +1,5 @@
 <%-- 
-    Document   : CadastrarCliente
+    Document   : cadastrarCliente
     Created on : 21/10/2020, 21:03:19
     Author     : Gustavo
 --%>
@@ -21,7 +21,7 @@
                         <label for="nome">nome</label>
                     </div>
                     <div class="input-field col s4">
-                        <input id="cpf" type="text" class="" name="cpf">
+                        <input id="cpf" type="text" class="" name="cpf" pattern="\d{11}" required="">
                         <label for="cpf">CPF</label>
                     </div>
                     <div class="input-field col s4">
@@ -29,34 +29,37 @@
                         <label for="email">E-mail</label>
                     </div>
                     <div class="input-field col s4">
-                        <input id="telefone" type="number" class="" name="telefone">
+                        <input id="telefone" type="tel" class="" name="telefone">
                         <label for="telefone">Telefone</label>
+                    </div>
+                    <div class="select-field col s4">
+                        <label>unidade</label>
+                        <select class="browser-default" id = "unidade" name="unidade">
+                            <option value="" disabled selected>Unidade</option>
+                            <option value="1">Matriz</option>
+                            <option value="2">Campina Grande</option>                           
+                            <option value="3">Brasília</option>
+                            <option value="4">Joinville</option>
+                        </select>
                     </div>
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" id="adicionar">Enviar
                     <i class="material-icons right">send</i>
                 </button>
         </div>
+        <script>
+            $('#textarea1').val('New Text');
+            M.textareaAutoResize($('#textarea1'));
+        </script>
     </body>
-
-    <script>
-        $('#textarea1').val('New Text');
-        M.textareaAutoResize($('#textarea1'));
-
-
-    </script>
-</body>
-<style type="text/css">
-    #formulario{
-        margin: 5%;
-
-    }
-    #adicionar{
-        margin-left: 40%;
-        height: 30px;
-        text-components: center;
-
-    }
-
-</style>
+    <style type="text/css">
+        #formulario{
+            margin: 5%;
+        }
+        #adicionar{
+            margin-left: 40%;
+            height: 30px;
+            text-components: center;
+        }
+    </style>
 </html>
