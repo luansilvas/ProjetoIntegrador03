@@ -66,7 +66,7 @@
                     <li class="white"><a href="ListarCliente"><i><img src="icons\customer.png"></i>Clientes</a> 
                     <li class="white"><a href="ListarProdutos"><i><img src="icons\product.png"></i>Produtos</a> 
                     <li class="white"><a href="#"><i><img src="icons\employee.png"></i>Funcionários</a>
-                    <li class="white"><a href="#"><i><img src="icons\bar-chart.png"></i>Vendas</a> 
+                    <li class="white"><a href="extrairRelatorio.jsp"><i><img src="icons\bar-chart.png"></i>Vendas</a> 
                     <li class="white"><a href="#" ><i><img src="icons\bug.png"></i>Chamado<!--<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span>--></a></li>    
                 </ul>
 
