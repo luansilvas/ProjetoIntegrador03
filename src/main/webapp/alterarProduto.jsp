@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </div>-->
-                <div class="row" style="margin-left:5%;margin-right: 5%;">
+                <div class="row" style="margin-left:5%;margin-right: 5%;display: none;">
                     <div class="input-field col s12">
                         <input id="codProduto" type="text" class="validate" name="codProduto" value="${produto.codProduto}" readonly="true">
                         <label for="CodProduto ">Código do produto</label>

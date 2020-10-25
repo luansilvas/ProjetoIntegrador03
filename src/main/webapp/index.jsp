@@ -13,37 +13,45 @@
 
 
 
-
-
-        <!-- Gitter Chat Link -->
-        <div class="fixed-action-btn"><a class="btn-floating btn-large red" href="#" target="_blank"><i class="large material-icons">chat</i></a></div>
+        
 
 
         <!-- Sliders -->
 
         <div class="carousel carousel-slider center">
-            <div class="carousel-fixed-item center">
-                <a class="btn waves-effect white grey-text darken-text-2">button</a>
+
+            <div class="carousel-item white-text" href="#one!" style="background-image: url('icons/tades_capa.png');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2><b>Seja bem-vindo a TADES!</b></h2>
+                <h5 class="white-text">A maior loja de móveis corporativos do país!</h5>
             </div>
-            <div class="carousel-item red white-text" href="#one!">
-                <h2>First Panel</h2>
-                <p class="white-text">This is your first panel</p>
+            <div class="carousel-item black-text" href="#two!"  style="background-image: url('icons/cadeiras.gif');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2><b>A melhor opção com as melhores opções</b></h2>
+                <p class="black-text">Teste produtos de qualidade inigualável</p>
             </div>
-            <div class="carousel-item amber white-text" href="#two!">
-                <h2>Second Panel</h2>
-                <p class="white-text">This is your second panel</p>
+            <div class="carousel-item white-text" href="#three!" style="background-image: url('icons/estante.gif');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2><b>A sua melhor escolha para fazer o homeoffice</b></h2>
+                <h5 class="white-text">Propostas inteligentes sem perder o conforto</h5>
             </div>
-            <div class="carousel-item green white-text" href="#three!">
-                <h2>Third Panel</h2>
-                <p class="white-text">This is your third panel</p>
-            </div>
-            <div class="carousel-item blue white-text" href="#four!">
-                <h2>Fourth Panel</h2>
-                <p class="white-text">This is your fourth panel</p>
+            <div class="carousel-item white-text" href="#four!" style="background-image: url('icons/promo.gif');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+                <h2>Os valores não são baixos e a qualidade também não</h2>
+                <h5 class="white-text">Aceitamos negociações e parcelamentos!</h5>
             </div>
         </div>
-
-
+        <article style="margin:5%;">
+            <h2>TADES</h2>
+            <p>A TADES ltda. atua há bastante tempo no ramo de móveis planejados e modulares para escritórios. Com o crescimento das vendas na época de pandemia, devido ao home office, nos tornamos a maior loja de móveis home corp do país.</p>
+            
+            <h5>Onde estamos em 2020</h5>
+            <img src="icons\locais.jpg" style="width:70%;margin-left: 10%">
+                
+                
+            </div>
+            
+            
+        </article>
+        <footer>
+            <p style="font-size:8px;margin-left: 5%">®MoovOffice <br> Gifs disponíveis em giphy.com</p>
+        </footer>
 
 
 
@@ -73,7 +81,10 @@
             padding: 15px 0 0 15px;
               
             }*/
-
+            p{
+            font-size: 17px;    
+                
+            }
             .row {
                 margin-bottom: 0;
 

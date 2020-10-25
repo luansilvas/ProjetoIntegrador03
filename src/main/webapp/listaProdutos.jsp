@@ -38,7 +38,7 @@
             <table class="striped">
                 <thead style="text-align: left">
                     <tr>
-                        <th>foto</th>
+                        <th>Código</th>
                         <th>foto</th>
                         <th>Titulo</th>
                         <th>Valor</th>

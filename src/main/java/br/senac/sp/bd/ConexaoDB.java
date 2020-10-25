@@ -11,6 +11,7 @@ import java.util.logging.Logger;
  * @author luans
  */
 public class ConexaoDB {
+
     public static String STATUS = "Não conectado";
     public static String DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -24,13 +25,14 @@ public class ConexaoDB {
 
     public static Connection CONEXAO;
 
-
     /**
-     *@return CONEXAO do tipo tipo Connection, isto é, permite que seja aberta a conexão para fazer o CRUD no banco 
-     *@throws ClassNotFoundException trata os erros de conexão com o banco, caso não exista a base de dados ou ele não esteja ativo, por exemplo
-     *@throws SQLException no trata de erros no banco 
+     * @return CONEXAO do tipo tipo Connection, isto é, permite que seja aberta
+     * a conexão para fazer o CRUD no banco
+     * @throws ClassNotFoundException trata os erros de conexão com o banco,
+     * caso não exista a base de dados ou ele não esteja ativo, por exemplo
+     * @throws SQLException no trata de erros no banco
      */
-    public static Connection abrirConexao()throws ClassNotFoundException, SQLException {
+    public static Connection abrirConexao() throws ClassNotFoundException, SQLException {
 
         URL = "jdbc:mysql://" + SERVER + ":3306/" + DATABASE + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
 
@@ -67,14 +69,18 @@ public class ConexaoDB {
         }
         return CONEXAO;
     }
+
     /**
-     *@return String descrevendo coomo está a situação do banco
+     * @return String descrevendo coomo está a situação do banco
      */
     public static String getStatusConexao() {
         return STATUS;
     }
+
     /**
-     *@return boolean true: A conexão foi fechada e ele não realizará mais atividaes até que reaberto; false: houve algum erro que impede o banco de fechar a conexão
+     * @return boolean true: A conexão foi fechada e ele não realizará mais
+     * atividaes até que reaberto; false: houve algum erro que impede o banco de
+     * fechar a conexão
      * @throws SQLException caso acontece algum erro ao fechar a conexão
      */
     public static boolean fecharConexao() throws SQLException {
@@ -97,41 +103,10 @@ public class ConexaoDB {
 
         return retorno;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
+
+}
+
+/*
         // Bloco executado uma única vez quando o servidor é inicializado
     static {
         try {
@@ -150,4 +125,3 @@ public class ConexaoDB {
         String password = "";
         return DriverManager.getConnection(url, user, password);
     }*/
-}
