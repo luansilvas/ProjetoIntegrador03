@@ -44,6 +44,14 @@
         <servlet-name>ExcluirCliente</servlet-name>
         <servlet-class>br.senac.sp.servlet.ExcluirCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastrarVenda</servlet-name>
+        <servlet-class>br.senac.sp.servlet.CadastrarVenda</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarVendas</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ListarVendas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AlterarProduto</servlet-name>
         <url-pattern>/AlterarProduto</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>ExcluirCliente</servlet-name>
         <url-pattern>/ExcluirCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarVenda</servlet-name>
+        <url-pattern>/CadastrarVenda</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarVendas</servlet-name>
+        <url-pattern>/ListarVendas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

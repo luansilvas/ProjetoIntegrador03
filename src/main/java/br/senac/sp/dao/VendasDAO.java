@@ -63,7 +63,7 @@ public class VendasDAO {
     }
     
     
-    public static boolean addVenda(Vendas vend) { //pra criar um registro na tabela produto
+    public static boolean addVenda(Vendas vend) { 
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -78,8 +78,8 @@ public class VendasDAO {
 
             instrucaoSQL.setTime(1, vend.getDiahora());
             instrucaoSQL.setDouble(2, vend.getTotal());
-            instrucaoSQL.setInt(3, vend.getCodCliente());
-            instrucaoSQL.setInt(4, vend.getCodUnidade());
+            //instrucaoSQL.setInt(3, vend.getCodCliente());
+            //instrucaoSQL.setInt(4, vend.getCodUnidade());
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             if (linhasAfetadas > 0) {
                 retorno = true;
@@ -113,6 +113,8 @@ public class VendasDAO {
         return retorno;
 
     }
+    
+    
     
     
 }
