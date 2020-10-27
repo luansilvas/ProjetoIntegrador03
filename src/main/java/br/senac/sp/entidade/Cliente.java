@@ -22,18 +22,14 @@ public class Cliente {
     private String cpf;
     private String email;
     private String telefone;
-        public Cliente(int codCliente, String nome, String cpf, String email, String telefone) {
-        this.codCliente=codCliente;
+    private int codUnidade;
+    
+    public Cliente(String nome, String cpf, String email, String telefone, int codUnidade) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
-    } 
-    public Cliente(String nome, String cpf, String email, String telefone) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefone = telefone;
+        this.codUnidade = codUnidade;
     } 
 
     @Override

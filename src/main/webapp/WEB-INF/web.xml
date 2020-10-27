@@ -60,6 +60,10 @@
         <servlet-name>RegistrarVenda</servlet-name>
         <servlet-class>br.senac.sp.servlet.RegistrarVenda</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>verCliente</servlet-name>
+        <servlet-class>br.senac.sp.servlet.verCliente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AlterarProduto</servlet-name>
         <url-pattern>/AlterarProduto</url-pattern>
@@ -120,7 +124,10 @@
         <servlet-name>RegistrarVenda</servlet-name>
         <url-pattern>/RegistrarVenda</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>verCliente</servlet-name>
+        <url-pattern>/verCliente</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

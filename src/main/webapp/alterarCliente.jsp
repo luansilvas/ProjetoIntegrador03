@@ -34,8 +34,8 @@
                     </div>
                     <div class="select-field col s4">
                         <label>unidade</label>
-                        <select class="browser-default" id = "unidade" name="unidade">
-                            <option value="" disabled selected></option>
+                        <select class="browser-default" id = "unidade" name="unidade" items="${unidade}">
+                            <option value="${unidade.codUnidade}" selected>${unidade.nome}</option>
                             <option value="1">Matriz</option>
                             <option value="2">Campina Grande</option>                           
                             <option value="3">Brasília</option>
@@ -48,7 +48,7 @@
                 </button>
             </form>
         </div>
-     <script>
+        <script>
             $('#textarea1').val('New Text');
             M.textareaAutoResize($('#textarea1'));
         </script>

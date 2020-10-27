@@ -34,7 +34,7 @@
                             <td>${c.email}</td>
                             <td>${c.telefone}</td>
                             <td>
-                                <a href=""><i class="material-icons">search</i></a>
+                                <a href="verCliente?cpf=${c.cpf}"><i class="material-icons">search</i></a>
                                 <a href="AlteraCliente?cpf=${c.cpf}" ><i class="material-icons">edit</i></a>
                                 <a href="ExcluirCliente?cpf=${c.cpf}"><i class="material-icons">delete</i></a>
                             </td>

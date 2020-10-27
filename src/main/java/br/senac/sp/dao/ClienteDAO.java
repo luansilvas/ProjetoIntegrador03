@@ -7,6 +7,7 @@ package br.senac.sp.dao;
 
 import br.senac.sp.bd.ConexaoDB;
 import br.senac.sp.entidade.Cliente;
+import br.senac.sp.entidade.Unidade;
 import br.senac.sp.servlet.ServletBD;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,12 +27,14 @@ import java.util.logging.Logger;
 public class ClienteDAO {
 
     public static List<Cliente> getClientes() {
+        
         List<Cliente> listaClientes = new ArrayList();
-        ResultSet rs = null;
-        Connection conexao = null;
-        PreparedStatement instrucaoSQL = null;
+        ResultSet rs;
+        Connection conexao;
+        PreparedStatement instrucaoSQL;
 
         try {
+            
             Class.forName("com.mysql.cj.jdbc.Driver");
             String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
             conexao = DriverManager.getConnection(URL, "root", "");
@@ -43,19 +46,22 @@ public class ClienteDAO {
                 String cpf = rs.getString("cpf");
                 String email = rs.getString("email");
                 String telefone = rs.getString("telefone");
+                int codUnidade = rs.getInt("Unidade_codUnidade");
 
-                listaClientes.add(new Cliente(nome, cpf, email, telefone));
+                listaClientes.add(new Cliente(nome, cpf, email, telefone, codUnidade));
             }
+
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return listaClientes;
     }
 
-    public static boolean addCliente(Cliente cliente, int codUnidade) {
+    public static boolean addCliente(Cliente cliente) {
+        
         boolean retorno = false;
-        Connection conexao = null;
+        Connection conexao;
         PreparedStatement instrucaoSQL = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -70,7 +76,7 @@ public class ClienteDAO {
             instrucaoSQL.setString(2, cliente.getCpf());
             instrucaoSQL.setString(3, cliente.getEmail());
             instrucaoSQL.setString(4, cliente.getTelefone());
-            instrucaoSQL.setInt(5, codUnidade);
+            instrucaoSQL.setInt(5, cliente.getCodUnidade());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             if (linhasAfetadas > 0) {
@@ -85,12 +91,11 @@ public class ClienteDAO {
                     throw new SQLException("Falha ao obter o código do Cliente.");
                 }
             } else {
-                //retorno = false;
+                
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
-            //retorno = false;
         } finally {
             try {
                 if (instrucaoSQL != null) {
@@ -102,10 +107,7 @@ public class ClienteDAO {
         }
 
         return retorno;
-
     }
-
-
 
     public static boolean deleteCliente(String cpf) {
         boolean retorno = false;
@@ -163,18 +165,56 @@ public class ClienteDAO {
             rs = instrucaoSQL.executeQuery();
 
             while (rs.next()) {
-                int codCliente = rs.getInt("codCliente");
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
                 String telefone = rs.getString("telefone");
                 int codUnidade = rs.getInt("Unidade_codUnidade");
-                clientes = new Cliente(codCliente,nome, cpf, email, telefone);
+                clientes = new Cliente(nome, cpf, email, telefone, codUnidade);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return clientes;
+    }
+
+    public static Unidade getUnidade(String cpf) {
+
+        Unidade unidade = new Unidade();
+        Cliente clientes = null;
+        ResultSet rs;
+        Connection conexao;
+        PreparedStatement instrucaoSQL;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
+            conexao = DriverManager.getConnection(URL, "root", "");
+            instrucaoSQL = conexao.prepareStatement("select * from Cliente where cpf=?");
+            instrucaoSQL.setString(1, cpf);
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                unidade.setCodUnidade(rs.getInt("Unidade_codUnidade"));
+                switch (unidade.getCodUnidade()) {
+                    case 1:
+                        unidade.setNome("Matriz");
+                        break;
+                    case 2:
+                        unidade.setNome("Campina Grande");
+                        break;
+                    case 3:
+                        unidade.setNome("Brasília");
+                        break;
+                    case 4:
+                        unidade.setNome("Joinville");
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return unidade;
     }
 
     public static boolean updateCliente(Cliente cliente, int codUnidade) {

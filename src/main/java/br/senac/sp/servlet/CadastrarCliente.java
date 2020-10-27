@@ -29,9 +29,9 @@ public class CadastrarCliente extends HttpServlet {
         String telefone = request.getParameter("telefone");
         int codUnidade = Integer.parseInt(request.getParameter("unidade"));
 
-        Cliente cliente = new Cliente(nome, cpf, email, telefone);
+        Cliente cliente = new Cliente(nome, cpf, email, telefone, codUnidade);
 
-        if (ClienteDAO.addCliente(cliente, codUnidade)) {
+        if (ClienteDAO.addCliente(cliente)) {
             response.sendRedirect("sucessoCliente.jsp");
         } else {
 
