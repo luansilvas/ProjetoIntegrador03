@@ -120,6 +120,7 @@
         <servlet-name>RegistrarVenda</servlet-name>
         <url-pattern>/RegistrarVenda</url-pattern>
     </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
