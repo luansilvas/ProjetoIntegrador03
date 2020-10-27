@@ -53,7 +53,7 @@ public class ClienteDAO {
         return listaClientes;
     }
 
-    public static boolean addCliente(Cliente cliente, int codUnidade) { 
+    public static boolean addCliente(Cliente cliente, int codUnidade) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -104,6 +104,8 @@ public class ClienteDAO {
         return retorno;
 
     }
+
+
 
     public static boolean deleteCliente(String cpf) {
         boolean retorno = false;
@@ -161,11 +163,12 @@ public class ClienteDAO {
             rs = instrucaoSQL.executeQuery();
 
             while (rs.next()) {
+                int codCliente = rs.getInt("codCliente");
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
                 String telefone = rs.getString("telefone");
-                int codUnidade = rs.getInt("Unidade_codUnidade");           
-                clientes = new Cliente(nome, cpf, email, telefone);
+                int codUnidade = rs.getInt("Unidade_codUnidade");
+                clientes = new Cliente(codCliente,nome, cpf, email, telefone);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
@@ -192,7 +195,7 @@ public class ClienteDAO {
             instrucaoSQL.setString(2, cliente.getEmail());
             instrucaoSQL.setString(3, cliente.getTelefone());
             instrucaoSQL.setInt(4, codUnidade);
-            instrucaoSQL.setString(5, cliente.getCpf());            
+            instrucaoSQL.setString(5, cliente.getCpf());
             instrucaoSQL.execute();
 
         } catch (SQLException | ClassNotFoundException ex) {

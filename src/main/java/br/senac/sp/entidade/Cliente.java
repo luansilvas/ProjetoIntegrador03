@@ -22,7 +22,13 @@ public class Cliente {
     private String cpf;
     private String email;
     private String telefone;
-    
+        public Cliente(int codCliente, String nome, String cpf, String email, String telefone) {
+        this.codCliente=codCliente;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+    } 
     public Cliente(String nome, String cpf, String email, String telefone) {
         this.nome = nome;
         this.cpf = cpf;

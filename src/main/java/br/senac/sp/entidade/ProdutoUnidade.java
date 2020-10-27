@@ -16,7 +16,34 @@ public class ProdutoUnidade extends Produto {
     private int status;
     private int quantidade;
     private String nomeUnidade;
+    private int codProdutoVenda;
+    private int codFuncionario;
+    private int statusProdutoVenda;
     
+
+    public int getCodProdutoVenda() {
+        return codProdutoVenda;
+    }
+
+    public void setCodProdutoVenda(int codProdutoVenda) {
+        this.codProdutoVenda = codProdutoVenda;
+    }
+
+    public int getCodFuncionario() {
+        return codFuncionario;
+    }
+
+    public void setCodFuncionario(int codFuncionario) {
+        this.codFuncionario = codFuncionario;
+    }
+
+    public int getStatusProdutoVenda() {
+        return statusProdutoVenda;
+    }
+
+    public void setStatusProdutoVenda(int statusProdutoVenda) {
+        this.statusProdutoVenda = statusProdutoVenda;
+    }
 
 
     public int getCodProdUnidade() {

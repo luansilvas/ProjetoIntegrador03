@@ -78,8 +78,8 @@ public class VendasDAO {
 
             instrucaoSQL.setTime(1, vend.getDiahora());
             instrucaoSQL.setDouble(2, vend.getTotal());
-            instrucaoSQL.setInt(3, vend.getCodCliente());
-            instrucaoSQL.setInt(4, vend.getCodUnidade());
+            //instrucaoSQL.setInt(3, vend.getCodCliente());
+           // instrucaoSQL.setInt(4, vend.getCodUnidade());
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             if (linhasAfetadas > 0) {
                 retorno = true;
