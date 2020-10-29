@@ -28,7 +28,7 @@ public class verProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       int codProduto = Integer.parseInt(request.getParameter("codProduto"));
+        int codProduto = Integer.parseInt(request.getParameter("codProduto"));
         ProdutoUnidade produto = ProdutoDAO.getProduto(codProduto);
         request.setAttribute("produto", produto);
 
@@ -39,7 +39,7 @@ public class verProduto extends HttpServlet {
     }
 
     //@Override
-   /* protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    /* protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Long cpf = Long.parseLong(request.getParameter("cpf"));
         String nome = request.getParameter("nome");
@@ -57,5 +57,4 @@ public class verProduto extends HttpServlet {
         }
 
     }*/
- 
 }

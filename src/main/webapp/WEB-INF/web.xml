@@ -64,6 +64,38 @@
         <servlet-name>verCliente</servlet-name>
         <servlet-class>br.senac.sp.servlet.verCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ExcluirProdutoVenda</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ExcluirProdutoVenda</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelarProdutoVenda</servlet-name>
+        <servlet-class>br.senac.sp.servlet.CancelarProdutoVenda</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ComprarProduto</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ComprarProduto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarVendas</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ListarVendas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>verVenda</servlet-name>
+        <servlet-class>br.senac.sp.servlet.verVenda</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarVendasUnidade</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ListarVendasUnidade</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarVendasCliente</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ListarVendasCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarVendasCategoria</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ListarVendasCategoria</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AlterarProduto</servlet-name>
         <url-pattern>/AlterarProduto</url-pattern>
@@ -127,6 +159,38 @@
     <servlet-mapping>
         <servlet-name>verCliente</servlet-name>
         <url-pattern>/verCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirProdutoVenda</servlet-name>
+        <url-pattern>/ExcluirProdutoVenda</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelarProdutoVenda</servlet-name>
+        <url-pattern>/CancelarProdutoVenda</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ComprarProduto</servlet-name>
+        <url-pattern>/ComprarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarVendas</servlet-name>
+        <url-pattern>/ListarVendas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>verVenda</servlet-name>
+        <url-pattern>/verVenda</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarVendasUnidade</servlet-name>
+        <url-pattern>/ListarVendasUnidade</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarVendasCliente</servlet-name>
+        <url-pattern>/ListarVendasCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarVendasCategoria</servlet-name>
+        <url-pattern>/ListarVendasCategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

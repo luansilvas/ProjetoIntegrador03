@@ -34,14 +34,14 @@
             </div>
         </div>
 
-        <h1>Relatório geral</h1>
+        <h1>Relatório geral - Categoria</h1>
         <div class="row" id="formulario">
 
-            <form class="col s12" action="ListarVendas" method="POST">
+            <form class="col s12" action="ListarVendasCategoria" method="POST">
 
                 <div class="select-field col s4">
                     <label>unidade</label>
-                    <select class="browser-default" id = "unidade" name="codUnidade" style="border:none" required>
+                    <select class="browser-default" id = "unidade" name="codUnidade" required>
                         <option value="" disabled selected>Unidade</option>
                         <option value="1">Matriz</option>
                         <option value="2">Campina Grande</option>                           
@@ -49,10 +49,6 @@
                         <option value="4">Joinville</option>
 
                     </select>
-                </div>
-                <div class="input-field col s4">
-                    <input id="valor" type="text" class="validate" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" name="cpf" required>
-                    <label for="valor">CPF</label>
                 </div>
 
 
@@ -83,11 +79,12 @@
         <thead style="text-align: left">
             <tr>
                 <th>Código</th>
-                <th>Valor item</th>
+                <th>Total</th>
 
                 <th>CPF cliente</th>
                 <th>data e hora</th>
-                <th>Ações</th>
+                <th>Categoria</th>
+                <th>Ver essa venda completa</th>
             </tr>
         </thead>
         <tbody> 
@@ -108,12 +105,9 @@
 
                 </tr>
             </c:forEach>
-            <tr>
-                <td>Total:</td>
-                <td id="total"></td>
-    
+        <td>Total:</td>
+        <td id="total"></td>
 
-            </tr>
         </tbody>
 
     </table>
@@ -139,8 +133,6 @@
 
         }
     }
-
-
     $(function () {
 
         var valorCalculado = 0;
@@ -151,7 +143,6 @@
         $("#total").text(valorCalculado);
 
     });
-
 </script>
 </body>
 <style>

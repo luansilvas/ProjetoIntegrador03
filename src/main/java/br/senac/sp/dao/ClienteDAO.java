@@ -34,10 +34,7 @@ public class ClienteDAO {
         PreparedStatement instrucaoSQL;
 
         try {
-            
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
-            conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = ConexaoDB.abrirConexao();
             instrucaoSQL = conexao.prepareStatement("select * from Cliente");
             rs = instrucaoSQL.executeQuery();
 
@@ -64,10 +61,6 @@ public class ClienteDAO {
         Connection conexao;
         PreparedStatement instrucaoSQL = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
-
             conexao = ConexaoDB.abrirConexao();
 
             instrucaoSQL = conexao.prepareStatement("insert into Cliente(nome,cpf,email,telefone,Unidade_codUnidade) values(?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
@@ -115,11 +108,7 @@ public class ClienteDAO {
         PreparedStatement instrucaoSQL = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
-
-            conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = ConexaoDB.abrirConexao();
 
             instrucaoSQL = conexao.prepareStatement("delete from cliente where cpf=?");
 
@@ -157,19 +146,18 @@ public class ClienteDAO {
         PreparedStatement instrucaoSQL = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
-            conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = ConexaoDB.abrirConexao();
             instrucaoSQL = conexao.prepareStatement("select * from Cliente where cpf=?");
             instrucaoSQL.setString(1, cpf);
             rs = instrucaoSQL.executeQuery();
 
             while (rs.next()) {
+                int codCliente = rs.getInt("codCliente");
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
                 String telefone = rs.getString("telefone");
                 int codUnidade = rs.getInt("Unidade_codUnidade");
-                clientes = new Cliente(nome, cpf, email, telefone, codUnidade);
+                clientes = new Cliente(codCliente,nome, cpf, email, telefone, codUnidade);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
@@ -187,9 +175,7 @@ public class ClienteDAO {
         PreparedStatement instrucaoSQL;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
-            conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = ConexaoDB.abrirConexao();
             instrucaoSQL = conexao.prepareStatement("select * from Cliente where cpf=?");
             instrucaoSQL.setString(1, cpf);
             rs = instrucaoSQL.executeQuery();
@@ -223,11 +209,7 @@ public class ClienteDAO {
         PreparedStatement instrucaoSQL = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
-
-            conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = ConexaoDB.abrirConexao();
 
             instrucaoSQL = conexao.prepareStatement("update Cliente set nome=?,email=?,telefone=?,Unidade_codUnidade=?  where cpf=?");
 

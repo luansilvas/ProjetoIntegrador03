@@ -34,10 +34,10 @@
             </div>
         </div>
 
-        <h1>Relatório geral</h1>
+        <h1>Relatório geral - Cliente</h1>
         <div class="row" id="formulario">
 
-            <form class="col s12" action="ListarVendas" method="POST">
+            <form class="col s12" action="ListarVendasCliente" method="POST">
 
                 <div class="select-field col s4">
                     <label>unidade</label>
@@ -56,22 +56,7 @@
                 </div>
 
 
-                <div class="select-field col s4">
-                    <label>Categoria</label>
-                    <select class="browser-default" id="categoria" name="categoria" required>
-                        <option value="" disabled selected>Categoria</option>
-                        <option value="Mesa comum">Mesa comum</option>
-                        <option value="Bancada com base">Bancada com base</option>                           
-                        <option value="Bancada de parede">Bancada de parede</option>
-                        <option value="Cadeira fixa">Cadeira fixa</option>
-                        <option value="Cadeira giratória">Cadeira giratória</option>
-                        <option value="Mesa planejada">Mesa planejada</option>
-                        <option value="Armário">Armário</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-
-
-                </div>
+                
 
 
         </div>
@@ -83,11 +68,11 @@
         <thead style="text-align: left">
             <tr>
                 <th>Código</th>
-                <th>Valor item</th>
+                <th>Total</th>
 
                 <th>CPF cliente</th>
                 <th>data e hora</th>
-                <th>Ações</th>
+                <th>Ver itens da Venda</th>
             </tr>
         </thead>
         <tbody> 
@@ -98,8 +83,6 @@
                     <td class="valorproduto">${venda.total}</td>
                     <td>${venda.CPF}</td>
                     <td>${venda.datahora}</td>
-                    <td>${venda.produto_categoria}</td>
-
                     <td>
                         <a href="verVenda?codVenda=${venda.codVenda}" about="blank"><i class="material-icons">search</i></a>
                        <!-- <a href="AlterarProduto?codProduto=${produto.codProduto}" ><i class="material-icons">edit</i></a>
@@ -108,12 +91,9 @@
 
                 </tr>
             </c:forEach>
-            <tr>
                 <td>Total:</td>
                 <td id="total"></td>
-    
 
-            </tr>
         </tbody>
 
     </table>
@@ -139,19 +119,18 @@
 
         }
     }
+    
+     $(function () {
 
+                var valorCalculado = 0;
 
-    $(function () {
+                $(".valorproduto").each(function () {
+                    valorCalculado += parseInt($(this).text());
+                });
+                $("#total").text(valorCalculado);
 
-        var valorCalculado = 0;
-
-        $(".valorproduto").each(function () {
-            valorCalculado += parseInt($(this).text());
-        });
-        $("#total").text(valorCalculado);
-
-    });
-
+            });
+    
 </script>
 </body>
 <style>

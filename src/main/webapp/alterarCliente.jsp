@@ -25,7 +25,7 @@
                         <label for="cpf">CPF</label>
                     </div>
                     <div class="input-field col s4">
-                        <input id="email" type="text" class="" name="email" value="${cliente.email}">
+                        <input id="email" type="email" class="" name="email" value="${cliente.email}">
                         <label for="email">E-mail</label>
                     </div>
                     <div class="input-field col s4">

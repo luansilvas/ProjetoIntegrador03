@@ -19,7 +19,15 @@ public class ProdutoUnidade extends Produto {
     private int codProdutoVenda;
     private int codFuncionario;
     private int statusProdutoVenda;
-    
+    private String cliente_codCliente;
+
+    public String getCliente_codCliente() {
+        return cliente_codCliente;
+    }
+
+    public void setCliente_codCliente(String cliente_codCliente) {
+        this.cliente_codCliente = cliente_codCliente;
+    }
 
     public int getCodProdutoVenda() {
         return codProdutoVenda;

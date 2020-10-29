@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Venda {
+public class Venda{
 
     private int codVenda;
     private double total;
@@ -22,8 +22,8 @@ public class Venda {
     private int Cliente_codCliente;
     private String datahora;
     private int status;
-    private String Cliente_CPF;
-
+    private String CPF;
+    private String produto_categoria;
     
     public Venda(){}
     

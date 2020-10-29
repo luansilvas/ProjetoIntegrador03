@@ -23,7 +23,16 @@ public class Cliente {
     private String email;
     private String telefone;
     private int codUnidade;
-    
+    public Cliente(){}
+    public Cliente(int codCliente,String nome, String cpf, String email, String telefone, int codUnidade) {
+       this.codCliente = codCliente;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.codUnidade = codUnidade;
+    } 
+
     public Cliente(String nome, String cpf, String email, String telefone, int codUnidade) {
         this.nome = nome;
         this.cpf = cpf;

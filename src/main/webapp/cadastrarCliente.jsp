@@ -21,11 +21,11 @@
                         <label for="nome">nome</label>
                     </div>
                     <div class="input-field col s4">
-                        <input id="cpf" type="text" class="" name="cpf" pattern="\d{11}" required="">
+                        <input id="cpf" type="text" class="" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required="">
                         <label for="cpf">CPF</label>
                     </div>
                     <div class="input-field col s4">
-                        <input id="email" type="text" class="" name="email">
+                        <input id="email" type="email" class="" name="email">
                         <label for="email">E-mail</label>
                     </div>
                     <div class="input-field col s4">

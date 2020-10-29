@@ -5,13 +5,11 @@
  */
 package br.senac.sp.servlet;
 
-import br.senac.sp.dao.ProdutoDAO;
 import br.senac.sp.dao.vendaDAO;
-import br.senac.sp.entidade.Produto;
-import br.senac.sp.entidade.ProdutoUnidade;
 import br.senac.sp.entidade.Venda;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author luans
  */
-public class ListarProdutos extends HttpServlet {
+public class ListarVendasUnidade extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,17 +32,27 @@ public class ListarProdutos extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+
+      protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos();
-        request.setAttribute("listaProdutos", listaProdutos);
-
+        List<Venda> listaVendas = vendaDAO.getVendas();
+        request.setAttribute("listaVendas", listaVendas);
         RequestDispatcher requestDispatcher = getServletContext()
-                .getRequestDispatcher("/listaProdutos.jsp");
+                .getRequestDispatcher("/extrairRelatorioUnidade.jsp");
         requestDispatcher.forward(request, response);
     }
-   
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            int codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
+
+            List<Venda> listaVendas = vendaDAO.getVendasUnidade(codUnidade);
+            request.setAttribute("listaVendas", listaVendas);
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/extrairRelatorioUnidade.jsp");
+            requestDispatcher.forward(request, response);
+        
+    }
+
 }
-
-

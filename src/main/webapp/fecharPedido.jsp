@@ -31,82 +31,85 @@
         <!--Barra de navegação e menu -->
 
 
+        <c:if test="${listaProdutoVenda != null}">
+            <div class="tabela">
+                <a class="btn-flat"  id="loja" href="Loja">continuar<i class="material-icons left">shopping_cart</i></a>
 
-        <div class="tabela">
-
-            <a class="btn-flat"  id="adicionar" href="cadastrarProduto.jsp">cancelar<i class="material-icons right">arrow_back</i></a>
-            <table class="striped">
-                <thead style="text-align: left">
-                    <tr>
-                        <th>Controle</th>
-                        <th>Código Produto</th>
-                        <th>Titulo</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody> 
-
-                    <c:forEach var="produto" items="${listaProdutoVenda}">
-                        <tr style="text-align: center">
-                            <td>${produto.codProdutoVenda}</td>
-                            <td>${produto.codProduto}</td>
-                            <td>${produto.titulo}</td>
-                            <td class="valorproduto">${produto.valor}</td>
-
-                            <td>
-                                <a href="verProduto?codProduto=${produto.codProduto}"><i class="material-icons">search</i></a>
-                                <a onClick="excluir(${produto.codProduto})"><i class="material-icons">delete</i></a>
-                            </td>
-
+                <a class="btn-flat"  id="adicionar" href="CancelarProdutoVenda">cancelar<i class="material-icons right">arrow_back</i></a>
+                <table class="striped">
+                    <thead style="text-align: left">
+                        <tr>
+                            <th>Controle</th>
+                            <th>Código Produto</th>
+                            <th>Titulo</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
                         </tr>
-                    </c:forEach>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Total:</td>
-                        <td id="total"></td>
-                    </tr>
-                </tbody>
+                    </thead>
+                    <tbody> 
 
-            </table>
-            <form class="col s12" action="RegistrarVenda" method="POST">
-                <div class="row">
+                        <c:forEach var="produto" items="${listaProdutoVenda}">
+                            <tr style="text-align: center">
+                                <td>${produto.codProdutoVenda}</td>
+                                <td>${produto.codProduto}</td>
+                                <td>${produto.titulo}</td>
+                                <td class="valorproduto">${produto.valor}</td>
+
+                                <td>
+                                    <a href="verProduto?codProduto=${produto.codProduto}" target="blank"><i class="material-icons">search</i></a>
+                                    <a onClick="excluir(${produto.codProdutoVenda})"><i class="material-icons">remove_shopping_cart</i></a>
+                                </td>
+
+                            </tr>
+                        </c:forEach>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total:</td>
+                            <td id="total"></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <form class="col s12" action="RegistrarVenda" method="POST">
+                    <div class="row">
 
 
-                    <div class="select-field col s3">
-                        <label>unidade</label>
-                        <select class="browser-default" id = "unidade" name="codUnidade">
-                            <option value="" disabled selected>Unidade</option>
-                            <option value="1">Matriz</option>
-                            <option value="2">Campina Grande</option>                           
-                            <option value="3">Brasília</option>
-                            <option value="4">Joinville</option>
-                        </select>
+                        <div class="select-field col s3">
+                            <label>unidade</label>
+                            <select class="browser-default" id = "unidade" name="codUnidade">
+                                <option value="" disabled selected>Unidade</option>
+                                <option value="1">Matriz</option>
+                                <option value="2">Campina Grande</option>                           
+                                <option value="3">Brasília</option>
+                                <option value="4">Joinville</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s3">
+                            <input id="cpf" type="text" class="validate" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" name="cpf" required>
+                            <label for="cpf">CPF cliente</label>
+                        </div>
+
+
+                        <div class="input-field col s3">
+
+                            <input id="matricula" type="text" class="validate" name="codFuncionario" pattern="[1-1]{1}"required>
+                            <label for="matricula">Matricula</label>
+                        </div>
+
+
                     </div>
-                    <div class="input-field col s3">
-                        <input id="cpf" type="text" class="validate" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" name="cpf" required>
-                        <label for="cpf">CPF cliente</label>
-                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" id="adicionar">Fechar
+                        <i class="material-icons right">arrow_forward_ios</i>
+                    </button>
+                </form>
+            </div>
+        </c:if>
+        <c:if test="${listaProdutoVenda==null}">
 
-
-                    <div class="input-field col s3">
-
-                        <input id="matricula" type="text" class="validate" name="codFuncionario" required>
-                        <label for="matricula">Matricula</label>
-                    </div>
-
-
-                </div>
-                <button class="btn waves-effect waves-light" type="submit" id="adicionar">Fechar
-                    <i class="material-icons right">arrow_forward_ios</i>
-                </button>
-            </form>
-        </div>
-
-
-
+            <h1>Seu carrinho está vazio!</h1>
+        </c:if>
 
 
 
@@ -130,10 +133,10 @@
         <script>
 
             function excluir(codProduto) {
-                retorno = confirm("Você deseja realmente excluir esse produto?");
+                retorno = confirm("Você deseja realmente excluir esse produto da sua venda?");
                 if (retorno == true) {
 
-                    var destino = "ExcluirProduto?codProduto=";
+                    var destino = "ExcluirProdutoVenda?codProdutoVenda=";
                     var tudo = destino + codProduto;
                     window.location.href = tudo;
 

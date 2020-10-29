@@ -6,8 +6,9 @@
 package br.senac.sp.servlet;
 
 import br.senac.sp.dao.ProdutoDAO;
-import br.senac.sp.dao.vendaDAO;
+import br.senac.sp.dao.ProdutoVendaDAO;
 import br.senac.sp.entidade.ProdutoUnidade;
+import br.senac.sp.entidade.ProdutoVenda;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,27 +22,21 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author luans
  */
-public class Loja extends HttpServlet {
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos();
-        request.setAttribute("listaProdutos", listaProdutos);
-        RequestDispatcher requestDispatcher = getServletContext()
-                .getRequestDispatcher("/loja.jsp");
-        requestDispatcher.forward(request, response);
-    }
+public class verVenda extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int codVenda = Integer.parseInt(request.getParameter("codVenda"));
+        
+        List<ProdutoUnidade> listaProdutoVenda = ProdutoVendaDAO.getProdutos(codVenda);
 
-        int codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
+        request.setAttribute("listaProdutoVenda", listaProdutoVenda);
 
-        List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos(codUnidade);
-        request.setAttribute("listaProdutos", listaProdutos);
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/loja.jsp");
+        RequestDispatcher requestDispatcher = getServletContext()
+                .getRequestDispatcher("/verVenda.jsp");
         requestDispatcher.forward(request, response);
+
     }
+
 }

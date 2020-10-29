@@ -34,14 +34,14 @@
             </div>
         </div>
 
-        <h1>Relatório geral</h1>
+        <h1>Relatório geral - Unidade</h1>
         <div class="row" id="formulario">
 
-            <form class="col s12" action="ListarVendas" method="POST">
+            <form class="col s12" action="ListarVendasUnidade" method="POST">
 
                 <div class="select-field col s4">
                     <label>unidade</label>
-                    <select class="browser-default" id = "unidade" name="codUnidade" style="border:none" required>
+                    <select class="browser-default" id = "unidade" name="codUnidade" required>
                         <option value="" disabled selected>Unidade</option>
                         <option value="1">Matriz</option>
                         <option value="2">Campina Grande</option>                           
@@ -49,28 +49,6 @@
                         <option value="4">Joinville</option>
 
                     </select>
-                </div>
-                <div class="input-field col s4">
-                    <input id="valor" type="text" class="validate" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" name="cpf" required>
-                    <label for="valor">CPF</label>
-                </div>
-
-
-                <div class="select-field col s4">
-                    <label>Categoria</label>
-                    <select class="browser-default" id="categoria" name="categoria" required>
-                        <option value="" disabled selected>Categoria</option>
-                        <option value="Mesa comum">Mesa comum</option>
-                        <option value="Bancada com base">Bancada com base</option>                           
-                        <option value="Bancada de parede">Bancada de parede</option>
-                        <option value="Cadeira fixa">Cadeira fixa</option>
-                        <option value="Cadeira giratória">Cadeira giratória</option>
-                        <option value="Mesa planejada">Mesa planejada</option>
-                        <option value="Armário">Armário</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-
-
                 </div>
 
 
@@ -84,10 +62,10 @@
             <tr>
                 <th>Código</th>
                 <th>Valor item</th>
-
                 <th>CPF cliente</th>
                 <th>data e hora</th>
-                <th>Ações</th>
+                <th>Categoria</th>
+                <th>Ver venda completa</th>
             </tr>
         </thead>
         <tbody> 
@@ -108,12 +86,9 @@
 
                 </tr>
             </c:forEach>
-            <tr>
                 <td>Total:</td>
                 <td id="total"></td>
-    
 
-            </tr>
         </tbody>
 
     </table>
@@ -139,19 +114,17 @@
 
         }
     }
+    
+     $(function () {
 
+                var valorCalculado = 0;
 
-    $(function () {
+                $(".valorproduto").each(function () {
+                    valorCalculado += parseInt($(this).text());
+                });
+                $("#total").text(valorCalculado);
 
-        var valorCalculado = 0;
-
-        $(".valorproduto").each(function () {
-            valorCalculado += parseInt($(this).text());
-        });
-        $("#total").text(valorCalculado);
-
-    });
-
+            });
 </script>
 </body>
 <style>

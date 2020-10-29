@@ -28,9 +28,7 @@ public class ProdutoVendaDAO {
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
 
             conexao = ConexaoDB.abrirConexao();
 
@@ -42,7 +40,7 @@ public class ProdutoVendaDAO {
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             if (linhasAfetadas > 0) {
                 retorno = true;
-
+                ProdutoDAO.reduzEstoque(prod.getCodProduto());
                 ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys();
                 if (generatedKeys.next()) {
 
@@ -71,23 +69,20 @@ public class ProdutoVendaDAO {
         return retorno;
 
     }
-
-    public static List<ProdutoUnidade> getProdutos() {
+public static List<ProdutoUnidade> getProdutos(int codVenda) {
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
         List<ProdutoUnidade> listaProdutos = new ArrayList();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
+            conexao = ConexaoDB.abrirConexao();
 
-            conexao = DriverManager.getConnection(URL, "root", "");
-
-            instrucaoSQL = conexao.prepareStatement("select * from ProdutoVenda where status=1");
-
+            instrucaoSQL = conexao.prepareStatement("select * from ProdutoVenda pv INNER JOIN produto on produto_codProduto = codProduto where venda_codVenda=? and pv.status=0;");
+            instrucaoSQL.setInt(1, codVenda);
             rs = instrucaoSQL.executeQuery();
             while (rs.next()) {
                 ProdutoUnidade prod = new ProdutoUnidade();
+                prod.setTitulo(rs.getString("titulo"));                
                 prod.setCodProdutoVenda(rs.getInt("codProdutoVenda"));
                 prod.setCodProduto(rs.getInt("produto_codProduto"));
                 prod.setValor(rs.getInt("produto_valor"));
@@ -104,28 +99,124 @@ public class ProdutoVendaDAO {
         }
         return listaProdutos;
     }
-    
-    
-    
-        public static boolean FecharProdutoVenda(int codVenda,int codFuncionario) {
+    public static List<ProdutoUnidade> getProdutos() {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        List<ProdutoUnidade> listaProdutos = new ArrayList();
+        try {
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("select * from ProdutoVenda pv INNER JOIN produto on produto_codProduto = codProduto where pv.status=1");
+
+            rs = instrucaoSQL.executeQuery();
+            while (rs.next()) {
+                ProdutoUnidade prod = new ProdutoUnidade();
+                prod.setTitulo(rs.getString("titulo"));
+                prod.setCodProdutoVenda(rs.getInt("codProdutoVenda"));
+                prod.setCodProduto(rs.getInt("produto_codProduto"));
+                prod.setValor(rs.getInt("produto_valor"));
+                prod.setCodFuncionario(rs.getInt("funcionario_codFuncionario"));
+
+                //String foto = rs.getString("foto");
+                listaProdutos.add(prod);
+
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaProdutos;
+    }
+
+    public static boolean FecharProdutoVenda(int codVenda, int codFuncionario) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            String URL = "jdbc:mysql://localhost:3306/tades?useTimezone=true&serverTimezone=UTC&useSSL=false";
-
-            conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = ConexaoDB.abrirConexao();
 
             instrucaoSQL = conexao.prepareStatement("update produtoVenda set venda_codVenda=?,funcionario_codFuncionario=?, status = 0 where status = 1;");
 
-            instrucaoSQL.setInt(1,codVenda);
-            instrucaoSQL.setInt(2,codFuncionario);
-
+            instrucaoSQL.setInt(1, codVenda);
+            instrucaoSQL.setInt(2, codFuncionario);
 
             instrucaoSQL.execute();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                conexao.close();
+
+            } catch (SQLException ex) {
+            }
+        }
+        return retorno;
+
+    }
+
+    public static boolean deleteProdutoVenda(ProdutoUnidade prod) {
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("DELETE FROM produtoVenda where codProdutoVenda = ?");
+
+            instrucaoSQL.setInt(1, prod.getCodProdutoVenda());
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+            if (linhasAfetadas > 0) {
+                retorno = true;
+                ProdutoDAO.aumentaEstoque(prod.getCodProduto());
+            } else {
+                retorno = false;
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                conexao.close();
+
+            } catch (SQLException ex) {
+            }
+        }
+        return retorno;
+
+    }
+    public static boolean cancelarProdutoVenda() {
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("DELETE FROM produtoVenda where status=1");
+
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());

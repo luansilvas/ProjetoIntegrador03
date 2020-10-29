@@ -38,23 +38,37 @@ public class RegistrarVenda extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String CPF = request.getParameter("cpf");
-        int codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
-        int codFuncionario = Integer.parseInt(request.getParameter("codFuncionario"));
+        try {
+            String CPF = request.getParameter("cpf");
+            int codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
+            int codFuncionario = Integer.parseInt(request.getParameter("codFuncionario"));
 
-        Cliente cli = ClienteDAO.getClientes(CPF);
+            double total = 0.0;
+            List<ProdutoUnidade> listaProdutoVenda = ProdutoVendaDAO.getProdutos();
+            if (listaProdutoVenda.isEmpty()) {
+                throw new RuntimeException("Lista vazia");
+            }
+            for (ProdutoUnidade item : listaProdutoVenda) {
+                total += item.getValor();
+            }
+            Cliente cli = ClienteDAO.getClientes(CPF);
 
+            int codVenda = vendaDAO.newSale(total, codFuncionario, cli.getCodCliente(), codUnidade);
+            
+                        out.println(codVenda);
 
-        double total = 0.0;
-        List<ProdutoUnidade> listaProdutoVenda = ProdutoVendaDAO.getProdutos();
-        for (ProdutoUnidade item : listaProdutoVenda) {
-            total += item.getValor();
+            if (!ProdutoVendaDAO.FecharProdutoVenda(codVenda, codFuncionario)) {
+                response.sendRedirect("sucessoVenda.jsp");
+            } else {
+                vendaDAO.cancelarVenda(codVenda);
+                response.sendRedirect("erroVenda.jsp");
+
+            }
+
+        } catch (Exception e) {
+            response.sendRedirect("erroVenda.jsp");
+
         }
-        int codVenda = vendaDAO.newSale(total, codFuncionario, cli.getCodCliente(), codUnidade);
-        if (codVenda > 0 && ProdutoVendaDAO.FecharProdutoVenda(codVenda, codFuncionario)) {
-            response.sendRedirect("sucessoProduto.jsp?codProd");
-        }
 
-        //   }
     }
 }

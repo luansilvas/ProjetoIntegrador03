@@ -39,7 +39,6 @@
                 <thead style="text-align: left">
                     <tr>
                         <th>Código</th>
-                        <th>foto</th>
                         <th>Titulo</th>
                         <th>Valor</th>
                         <th>quantidade</th>
@@ -51,12 +50,12 @@
                     <c:forEach var="produto" items="${listaProdutos}">
                         <tr style="text-align: center">
                             <td>${produto.codProduto}</td>
-                            <td>${produto.foto}</td>
+
                             <td>${produto.titulo}</td>
                             <td>${produto.valor}</td>
                             <td>${produto.quantidade}</td>
                             <td>
-                                <a href="verProduto?codProduto=${produto.codProduto}"><i class="material-icons">search</i></a>
+                                <a href="verProduto?codProduto=${produto.codProduto}" target="blank"><i class="material-icons">search</i></a>
                                 <a href="AlterarProduto?codProduto=${produto.codProduto}" ><i class="material-icons">edit</i></a>
                                 <a onClick="excluir(${produto.codProduto})"><i class="material-icons">delete</i></a>
                             </td>

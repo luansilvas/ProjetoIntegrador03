@@ -14,12 +14,12 @@
     </head>
     <body>
         <div style="margin: 4%;">
-        <h1>Sua operação foi feita com sucesso!</h1>
+        <h1 style="text-align: center">Verifique se as informações estão corretas ou se o carrinho possui algum item.</h1>
         <div class="acoes" style="margin-left: 30%;margin-top: 5%;">
 
 
-            <a class="waves-effect waves-light btn" href="Loja"><i class="material-icons left">arrow_back</i>Vendas</a>
-            <a class="waves-effect waves-light btn" href="index.jsp"><i class="material-icons right">home</i>Página Inicial</a>
+            <a class="waves-effect waves-light btn" href="FecharPedido"><i class="material-icons left">arrow_back</i>Tentar novamente</a>
+            <a class="waves-effect waves-light btn" href="CancelarProdutoVenda"><i class="material-icons right">home</i>Nova venda</a>
         </div>
         </div>
     </body>

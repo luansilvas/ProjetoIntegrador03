@@ -5,11 +5,15 @@
  */
 package br.senac.sp.servlet;
 
+import br.senac.sp.dao.ClienteDAO;
 import br.senac.sp.dao.ProdutoDAO;
 import br.senac.sp.dao.vendaDAO;
+import br.senac.sp.entidade.Cliente;
 import br.senac.sp.entidade.ProdutoUnidade;
+import br.senac.sp.entidade.Venda;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,15 +25,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author luans
  */
-public class Loja extends HttpServlet {
+public class ListarVendas extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos();
-        request.setAttribute("listaProdutos", listaProdutos);
+        List<Venda> listaVendas = vendaDAO.getVendas();
+        request.setAttribute("listaVendas", listaVendas);
         RequestDispatcher requestDispatcher = getServletContext()
-                .getRequestDispatcher("/loja.jsp");
+                .getRequestDispatcher("/extrairRelatorio.jsp");
         requestDispatcher.forward(request, response);
     }
 
@@ -37,11 +41,22 @@ public class Loja extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
+            String cpf = "", categoria = " ", dia = " ";
 
-        List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos(codUnidade);
-        request.setAttribute("listaProdutos", listaProdutos);
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/loja.jsp");
-        requestDispatcher.forward(request, response);
+            cpf = request.getParameter("cpf");
+
+            categoria = request.getParameter("categoria");
+
+            int codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
+
+            List<Venda> listaVendas = vendaDAO.getVendas(codUnidade, cpf, categoria);
+            request.setAttribute("listaVendas", listaVendas);
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/extrairRelatorio.jsp");
+            requestDispatcher.forward(request, response);
+        }
+
+    
+    
     }
-}
+
+
