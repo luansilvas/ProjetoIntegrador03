@@ -13,7 +13,6 @@
 
 
 
-        
 
 
         <!-- Sliders -->
@@ -40,14 +39,14 @@
         <article style="margin:5%;">
             <h2>TADES</h2>
             <p>A TADES ltda. atua há bastante tempo no ramo de móveis planejados e modulares para escritórios. Com o crescimento das vendas na época de pandemia, devido ao home office, nos tornamos a maior loja de móveis home corp do país.</p>
-            
+
             <h5>Onde estamos em 2020</h5>
             <img src="icons\locais.jpg" style="width:70%;margin-left: 10%">
-                
-                
+
+
             </div>
-            
-            
+
+
         </article>
         <footer>
             <p style="font-size:8px;margin-left: 5%">®MoovOffice <br> Gifs disponíveis em giphy.com</p>
@@ -55,7 +54,7 @@
 
 
 
-
+     
         <style>
             .botao{
                 padding: 0px;
@@ -82,8 +81,8 @@
               
             }*/
             p{
-            font-size: 17px;    
-                
+                font-size: 17px;    
+
             }
             .row {
                 margin-bottom: 0;

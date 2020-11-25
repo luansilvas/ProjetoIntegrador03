@@ -93,6 +93,78 @@ public class ProdutoDAO {
         return listaProdutos;
     }
 
+    public static List<ProdutoUnidade> getProdutos(String categoria) {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        List<ProdutoUnidade> listaProdutos = new ArrayList();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("select * from produto where status=1 and categoria=?");
+            instrucaoSQL.setString(1, categoria);
+            rs = instrucaoSQL.executeQuery();
+            while (rs.next()) {
+                ProdutoUnidade prod = new ProdutoUnidade();
+                prod.setCodProduto(rs.getInt("codProduto"));
+                prod.setTitulo(rs.getString("titulo"));
+                prod.setCategoria(rs.getString("categoria"));
+                prod.setDescricao(rs.getString("descricao"));
+                prod.setValor(rs.getDouble("valor"));
+                prod.setQuantidade(rs.getInt("quantidade"));
+                prod.setCodUnidade(rs.getInt("Unidade_codUnidade"));
+                prod.setStatus(rs.getInt("status"));
+
+                //String foto = rs.getString("foto");
+                listaProdutos.add(prod);
+
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaProdutos;
+    }
+    public static List<ProdutoUnidade> getProdutos(String categoria,int codUnidade) {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        List<ProdutoUnidade> listaProdutos = new ArrayList();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("select * from produto where status=1 and categoria=? and Unidade_codUnidade=?");
+            instrucaoSQL.setString(1, categoria);
+            instrucaoSQL.setInt(2, codUnidade);
+            rs = instrucaoSQL.executeQuery();
+            while (rs.next()) {
+                ProdutoUnidade prod = new ProdutoUnidade();
+                prod.setCodProduto(rs.getInt("codProduto"));
+                prod.setTitulo(rs.getString("titulo"));
+                prod.setCategoria(rs.getString("categoria"));
+                prod.setDescricao(rs.getString("descricao"));
+                prod.setValor(rs.getDouble("valor"));
+                prod.setQuantidade(rs.getInt("quantidade"));
+                prod.setCodUnidade(rs.getInt("Unidade_codUnidade"));
+                prod.setStatus(rs.getInt("status"));
+
+                //String foto = rs.getString("foto");
+                listaProdutos.add(prod);
+
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaProdutos;
+    }
+
     public static boolean addProduto(ProdutoUnidade prod) { //pra criar um registro na tabela produto
         boolean retorno = false;
         Connection conexao = null;
@@ -261,7 +333,6 @@ public class ProdutoDAO {
 
         try {
 
-
             conexao = ConexaoDB.abrirConexao();
 
             instrucaoSQL = conexao.prepareStatement("update produto set quantidade = quantidade+1 where codProduto=?;");
@@ -293,7 +364,6 @@ public class ProdutoDAO {
 
     }
 
-    
     public static ProdutoUnidade getProduto(int codProduto) {
         ResultSet rs = null;
         Connection conexao = null;

@@ -1,8 +1,4 @@
-<%-- 
-    Document   : listaProdutos
-    Created on : 15/10/2020, 17:38:51
-    Author     : luans
---%>
+
 <%-- 
     Document   : listaProdutos
     Created on : 15/10/2020, 17:38:51
@@ -33,8 +29,46 @@
 
 
         <div class="tabela">
-
+            <a class="btn-flat"  id="adicionar" href="ListarProdutos">Limpar Filtros<i class="material-icons right">refresh</i></a>
             <a class="btn-flat"  id="adicionar" href="cadastrarProduto.jsp">add<i class="material-icons right">add</i></a>
+            <form class="col s12" action="ListarProdutos" method="POST">
+                <div class="row">
+                    <div class="select-field col s4">
+                        <label>unidade</label>
+                        <select class="browser-default" id = "unidade" name="codUnidade" required>
+                            <option value="" disabled selected>Unidade</option>
+                            <option value="1">Matriz</option>
+                            <option value="2">Campina Grande</option>                           
+                            <option value="3">Brasília</option>
+                            <option value="4">Joinville</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="select-field col s4">
+                        <label>Categoria</label>
+                        <select class="browser-default" id="categoria" name="categoria" required>
+                            <option value="" disabled selected>Categoria</option>
+                            <option value="Mesa comum">Mesa comum</option>
+                            <option value="Bancada com base">Bancada com base</option>                           
+                            <option value="Bancada de parede">Bancada de parede</option>
+                            <option value="Cadeira fixa">Cadeira fixa</option>
+                            <option value="Cadeira giratória">Cadeira giratória</option>
+                            <option value="Mesa planejada">Mesa planejada</option>
+                            <option value="Armário">Armário</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+
+
+                    </div>
+
+
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" id="adicionar">Buscar
+                    <i class="material-icons right">search</i>
+                </button>
+            </form>
             <table class="striped">
                 <thead style="text-align: left">
                     <tr>
@@ -82,9 +116,9 @@
                 retorno = confirm("Você deseja realmente excluir esse produto?");
                 if (retorno == true) {
 
-                var destino = "ExcluirProduto?codProduto=";
-                var tudo = destino+codProduto;
-                window.location.href=tudo;
+                    var destino = "ExcluirProduto?codProduto=";
+                    var tudo = destino + codProduto;
+                    window.location.href = tudo;
 
                 }
             }

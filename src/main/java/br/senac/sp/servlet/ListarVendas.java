@@ -33,7 +33,7 @@ public class ListarVendas extends HttpServlet {
         List<Venda> listaVendas = vendaDAO.getVendas();
         request.setAttribute("listaVendas", listaVendas);
         RequestDispatcher requestDispatcher = getServletContext()
-                .getRequestDispatcher("/extrairRelatorio.jsp");
+                .getRequestDispatcher("/protegido/extrairRelatorio.jsp");
         requestDispatcher.forward(request, response);
     }
 
@@ -51,7 +51,7 @@ public class ListarVendas extends HttpServlet {
 
             List<Venda> listaVendas = vendaDAO.getVendas(codUnidade, cpf, categoria);
             request.setAttribute("listaVendas", listaVendas);
-            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/extrairRelatorio.jsp");
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/protegido/extrairRelatorio.jsp");
             requestDispatcher.forward(request, response);
         }
 

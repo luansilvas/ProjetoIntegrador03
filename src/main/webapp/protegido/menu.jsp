@@ -4,6 +4,7 @@
     Author     : luans
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,23 +36,29 @@
 
                     <li class="sidenav-header grey lighten-1">
                         <div class="row">
-                            <div class="col s4">
+                            <div class="col s4" style="align-components:center;">
                                 <img src="icons\person.jpg" width="48px" height="48px" alt="" class="circle responsive-img valign profile-image">
+
                             </div>
 
 
 
                             <div>
                                 <a class="btn-flat dropdown-button waves-effect waves-light white-text" href="#" data-activates="profile-dropdown">Funcionario<i class="mdi-navigation-arrow-drop-down"></i></a>
-                                <ul id="profile-dropdown" class="dropdown-content">
-                                    <li><a href="#" ><i class="material-icons">person</i>Profile</a></li>
-                                    <li><a href="#" ><i class="material-icons">settings</i>Setting</a></li>
-                                    <li><a href="#" ><i class="material-icons">help</i>Help</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#" ><i class="material-icons">lock</i>Lock</a></li>
-                                    <li><a href="#"><i class="material-icons">exit_to_app</i>Logout</a></li>
-                                </ul>
+                                <!--
+                                 <ul id="profile-dropdown" class="dropdown-content">
+                                     <li><a href="#" ><i class="material-icons">person</i>Profile</a></li>
+                                     <li><a href="#" ><i class="material-icons">settings</i>Setting</a></li>
+                                     <li><a href="#" ><i class="material-icons">help</i>Help</a></li>
+                                     <li class="divider"></li>
+                                     <li><a href="#" ><i class="material-icons">lock</i>Lock</a></li>
+                                     <li><a href="#"><i class="material-icons">exit_to_app</i>Logout</a></li>
+                                 </ul>-->
+
+                                <a href="<c:url value="/LogoutServlet"/>"><i class="material-icons">power_settings_new</i></a>
+
                             </div>
+
                         </div>
                     </li>
 
@@ -61,12 +68,17 @@
 
 
 
-                    <li class="white"><a href="Loja"><i><img src="icons\store.png"></i>Loja</a> 
+                    <li class="white"><a href="<c:url value="/Loja"/>"><i><img src="icons\store.png"></i>Loja</a> 
 
-                    <li class="white"><a href="ListarCliente"><i><img src="icons\customer.png"></i>Clientes</a> 
+                    <li class="white"><a href="<c:url value="/ListarCliente"/>"><i><img src="icons\customer.png"></i>Clientes</a> 
                     <li class="white"><a href="ListarProdutos"><i><img src="icons\product.png"></i>Produtos</a> 
                     <li class="white"><a href="index.jsp"><i><img src="icons\employee.png"></i>Funcionários<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a>
-                    <li class="white"><a href="ListarVendas"><i><img src="icons\bar-chart.png"></i>Vendas</a> 
+
+
+
+                        <c:if test="${sessionScope.usuario.cargo eq 'gerente'}">
+                        <li class="white"><a href="<c:url value="/ListarVendas"/>"><i><img src="icons\bar-chart.png"></i>Vendas</a> 
+                                </c:if> 
                     <li class="white"><a href="index.jsp" ><i><img src="icons\bug.png"></i>Chamado<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a></li>    
                 </ul>
 

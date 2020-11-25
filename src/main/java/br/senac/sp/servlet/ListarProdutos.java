@@ -44,7 +44,17 @@ public class ListarProdutos extends HttpServlet {
                 .getRequestDispatcher("/listaProdutos.jsp");
         requestDispatcher.forward(request, response);
     }
-   
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String categoria = request.getParameter("categoria");
+
+        int codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
+
+        List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos(categoria,codUnidade);
+        request.setAttribute("listaProdutos", listaProdutos);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/listaProdutos.jsp");
+        requestDispatcher.forward(request, response);
+    }
 }
-
-
