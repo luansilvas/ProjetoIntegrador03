@@ -26,13 +26,14 @@ public class verCliente extends HttpServlet {
             throws ServletException, IOException {
 
         String cpf = request.getParameter("cpf");
+        
         Cliente cliente = ClienteDAO.getClientes(cpf);
         Unidade unidade = ClienteDAO.getUnidade(cpf);
 
         request.setAttribute("cliente", cliente);
         request.setAttribute("unidade", unidade);
 
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/verCliente.jsp");
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/protegido/verCliente.jsp");
         requestDispatcher.forward(request, response);
     }
 }

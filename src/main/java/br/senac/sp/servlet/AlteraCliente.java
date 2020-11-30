@@ -32,7 +32,7 @@ public class AlteraCliente extends HttpServlet {
         request.setAttribute("cliente", cliente);
         request.setAttribute("unidade", unidade);
 
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/alterarCliente.jsp");
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/protegido/alterarCliente.jsp");
         requestDispatcher.forward(request, response);
 
     }
@@ -53,7 +53,7 @@ public class AlteraCliente extends HttpServlet {
         cliente.setTelefone(telefone);
 
         if (ClienteDAO.updateCliente(cliente, codUnidade)) {
-            response.sendRedirect("sucessoCliente.jsp");
+            response.sendRedirect("protegido/sucessoCliente.jsp");
         }
 
     }

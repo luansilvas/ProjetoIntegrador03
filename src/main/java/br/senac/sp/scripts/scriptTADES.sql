@@ -41,9 +41,28 @@ insert into Cliente(nome,cpf,email,telefone,Unidade_codUnidade)values("Cliente t
 
 Create table tades.Funcionario(
 codFuncionario INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-Funcionario_nome VARCHAR(100) not null
+nome VARCHAR(100),
+cargo VARCHAR(100),
+Unidade_codUnidade INTEGER,
+foreign key (Unidade_codUnidade) references Unidade(codUnidade)
 );
-INSERT INTO tades.Funcionario(Funcionario_nome) values("default");
+INSERT INTO tades.Funcionario(nome,cargo,Unidade_codUnidade) values("joao","anl BackOffice",1);
+INSERT INTO tades.Funcionario(nome,cargo) values("joao","gerente",3);
+drop table usuario;
+create table usuario(
+codUsuario integer auto_increment primary KEY,
+login VARCHAR(150),
+senha VARCHAR(150),
+cargo VARCHAR(150),
+Funcionario_codFuncionario INTEGER,
+FOREIGN KEY(Funcionario_codFuncionario) references Funcionario(codFuncionario)
+);
+insert into usuario(login,senha,cargo,Funcionario_codFuncionario)  values('opa','uhu','gerente',1);
+insert into usuario(login,senha,cargo,Funcionario_codFuncionario)  values('uhu','uhu','anl Ti',1);
+insert into usuario(login,senha,cargo,Funcionario_codFuncionario)  values('aha','aha','anl',1);
+insert into usuario
+
+
 create table tades.venda(
 codVenda INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 total NUMERIC(9,2),
@@ -68,4 +87,6 @@ FOREIGN KEY(venda_codVenda) REFERENCES venda(codVenda),
 FOREIGN KEY(funcionario_codFuncionario) REFERENCES Funcionario(codFuncionario),
 FOREIGN KEY(produto_codProduto) REFERENCES produto(codProduto)
 );
+
+
 

@@ -32,7 +32,7 @@ public class CadastrarCliente extends HttpServlet {
         Cliente cliente = new Cliente(nome, cpf, email, telefone, codUnidade);
 
         if (ClienteDAO.addCliente(cliente)) {
-            response.sendRedirect("sucessoCliente.jsp");
+            response.sendRedirect("protegido/sucessoCliente.jsp");
         } else {
 
         }

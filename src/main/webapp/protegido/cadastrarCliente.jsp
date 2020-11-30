@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="row" id="formulario">
-            <form class="col s12" action="CadastrarCliente" method="POST">
+            <form class="col s12" action="<c:url value="/CadastrarCliente"/>" method="POST">
                 <div class="row">
                     <div class="input-field col s4">
                         <input id="nome" type="text" class="" name="nome">
@@ -46,6 +46,7 @@
                 <button class="btn waves-effect waves-light" type="submit" id="adicionar">Enviar
                     <i class="material-icons right">send</i>
                 </button>
+                </form>
         </div>
         <script>
             $('#textarea1').val('New Text');

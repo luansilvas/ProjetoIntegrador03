@@ -23,7 +23,7 @@
         <nav>
             <div class="nav-wrapper grey lighten-1">
                 <a href="index.jsp" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">arrow_forward_ios</i></a>
-                <a href="index.jsp" class="brand-logo"><img src="icons\logo_transparent.png" style="width: 70px"></a>
+                <a href="protegido/index.jsp" class="brand-logo"><img src="icons\logo_transparent.png" style="width: 70px"></a>
                 <ul class="right hide">
                     <li><a href="https://codepen.io/collection/nbBqgY/" target="_blank">Sass</a></li>
                     <li><a href="https://codepen.io/collection/nbBqgY/" target="_blank">Components</a></li>
@@ -70,13 +70,13 @@
 
                     <li class="white"><a href="<c:url value="/Loja"/>"><i><img src="icons\store.png"></i>Loja</a> 
 
-                    <li class="white"><a href="<c:url value="/ListarCliente"/>"><i><img src="icons\customer.png"></i>Clientes</a> 
-                    <li class="white"><a href="ListarProdutos"><i><img src="icons\product.png"></i>Produtos</a> 
-                    <li class="white"><a href="index.jsp"><i><img src="icons\employee.png"></i>Funcionários<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a>
+                    <li class="white"><a href="<c:url value="/ListarCliente"/>"><i><img src="..\protegido\icons\customer.png"></i>Clientes</a> 
+                    <li class="white"><a href="<c:url value="/ListarProdutos"/>"><i><img src="icons\product.png"></i>Produtos</a> 
+                    <li class="white"><a href="<c:url value="/ListarFuncionario"/>"><i><img src="icons\employee.png"></i>Funcionários<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a>
 
 
 
-                        <c:if test="${sessionScope.usuario.cargo eq 'gerente'}">
+                        <c:if test="${sessionScope.usuario.cargo eq 'Gerente'}">
                         <li class="white"><a href="<c:url value="/ListarVendas"/>"><i><img src="icons\bar-chart.png"></i>Vendas</a> 
                                 </c:if> 
                     <li class="white"><a href="index.jsp" ><i><img src="icons\bug.png"></i>Chamado<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a></li>    

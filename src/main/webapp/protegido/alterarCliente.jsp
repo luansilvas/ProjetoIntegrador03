@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="row" id="formulario">
-            <form class="col s12" action="AlteraCliente" method="POST">
+            <form class="col s12" action="<c:url value="/AlteraCliente"/>" method="POST">
                 <div class="row">
                     <div class="input-field col s4">
                         <input id="nome" type="text" class="" name="nome"  value="${cliente.nome}">

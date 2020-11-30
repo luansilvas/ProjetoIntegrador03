@@ -27,12 +27,12 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
 
-        Usuario usuario = UsuarioDAO.getUsuario(login, senha);
+        Usuario usuario = UsuarioDAO.getUsuario(login);
 
-        if (usuario == null) {
+        if (usuario == null||!usuario.validarSenha(senha)) {
             response.sendRedirect(request.getContextPath()+"/login.jsp?erro=UserNotFound");
         } else {
-            System.out.println("COD usuario:"+usuario.getCodUsuario());
+
             HttpSession sessao = request.getSession();
             sessao.setAttribute("usuario", usuario);
             response.sendRedirect(request.getContextPath()+"/protegido/index.jsp");

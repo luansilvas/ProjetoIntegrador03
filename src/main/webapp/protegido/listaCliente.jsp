@@ -17,7 +17,7 @@
     </head>
     <body>
         <div class="tabela">
-            <a class="btn-flat"  id="adicionar" href="cadastrarCliente.jsp">add<i class="material-icons right">add</i></a>
+            <a class="btn-flat"  id="adicionar" href="protegido/cadastrarCliente.jsp">add<i class="material-icons right">add</i></a>
             <table class="striped">
                 <thead style="text-align: left"> 
                 <th>Nome</th>
@@ -34,9 +34,9 @@
                             <td>${c.email}</td>
                             <td>${c.telefone}</td>
                             <td>
-                                <a href="verCliente?cpf=${c.cpf}"><i class="material-icons">search</i></a>
-                                <a href="AlteraCliente?cpf=${c.cpf}" ><i class="material-icons">edit</i></a>
-                                <a href="ExcluirCliente?cpf=${c.cpf}"><i class="material-icons">delete</i></a>
+                                <a href="<c:url value="/verCliente?cpf=${c.cpf}"/>"><i class="material-icons">search</i></a>
+                                <a href="<c:url value="/AlteraCliente?cpf=${c.cpf}"/>"><i class="material-icons">edit</i></a>
+                                <a href="<c:url value="/ExcluirCliente?cpf=${c.cpf}"/>"><i class="material-icons">delete</i></a>
                             </td>
                         </tr>
                     </c:forEach>

@@ -41,7 +41,7 @@ public class ListarProdutos extends HttpServlet {
         request.setAttribute("listaProdutos", listaProdutos);
 
         RequestDispatcher requestDispatcher = getServletContext()
-                .getRequestDispatcher("/listaProdutos.jsp");
+                .getRequestDispatcher("/protegido/listaProdutos.jsp");
         requestDispatcher.forward(request, response);
     }
 
@@ -54,7 +54,8 @@ public class ListarProdutos extends HttpServlet {
 
         List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos(categoria,codUnidade);
         request.setAttribute("listaProdutos", listaProdutos);
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/listaProdutos.jsp");
+
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/protegido/listaProdutos.jsp");
         requestDispatcher.forward(request, response);
     }
 }

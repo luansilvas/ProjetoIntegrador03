@@ -29,7 +29,7 @@ public class Loja extends HttpServlet {
         List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos();
         request.setAttribute("listaProdutos", listaProdutos);
         RequestDispatcher requestDispatcher = getServletContext()
-                .getRequestDispatcher("/loja.jsp");
+                .getRequestDispatcher("/protegido/loja.jsp");
         requestDispatcher.forward(request, response);
     }
 
@@ -41,7 +41,7 @@ public class Loja extends HttpServlet {
 
         List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos(codUnidade);
         request.setAttribute("listaProdutos", listaProdutos);
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/loja.jsp");
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/protegido/loja.jsp");
         requestDispatcher.forward(request, response);
     }
 }

@@ -5,6 +5,7 @@
  */
 package br.senac.sp.entidade;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Usuario {
+public class Usuario extends Funcionario{
 
     private int codUsuario;
     private String login;
@@ -26,15 +27,31 @@ public class Usuario {
         return this.cargo.equalsIgnoreCase("gerente");
 
     }
-
-    public Usuario(int codUsuario, String cargo, String login, String senha, int Funcionario_codFuncionario) {
-        this.codUsuario = codUsuario;
-        this.cargo = cargo;
-        this.login = login;
-        this.senha = senha;
-        this.Funcionario_codFuncionario = Funcionario_codFuncionario;
+    
+    
+    
+    
+    
+    public String codificarSenha(String senha){
+    return BCrypt.withDefaults().hashToString(12, senha.toCharArray());
 
     }
+    public boolean validarSenha(String senha){
+    BCrypt.Result response = BCrypt.verifyer().verify(senha.toCharArray(),this.getSenha());
+    return response.verified;
+    }
+
+    public Usuario(int codUsuario, String login, String cargo, String senha, int Funcionario_codFuncionario, int codFuncionario, String nome, String cpf, String email, String celular, int codUnidade) {
+        super(codFuncionario, nome, cpf, email, celular, codUnidade);
+        this.codUsuario = codUsuario;
+        this.login = login;
+        this.cargo = cargo;
+        this.senha = senha;
+        this.Funcionario_codFuncionario = Funcionario_codFuncionario;
+    }
+
+
+    
     
     
     

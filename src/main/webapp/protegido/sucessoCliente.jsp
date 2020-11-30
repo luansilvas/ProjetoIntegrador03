@@ -16,7 +16,7 @@
         <div style="margin: 4%;">
             <h1>Sua operação foi feita com sucesso!</h1>
             <div class="acoes" style="margin-left: 30%;margin-top: 5%;">
-                <a class="waves-effect waves-light btn" href="ListarCliente"><i class="material-icons left">arrow_back</i>Lista de Clientes</a>
+                <a class="waves-effect waves-light btn" href="<c:url value="/ListarCliente"/>"><i class="material-icons left">arrow_back</i>Lista de Clientes</a>
                 <a class="waves-effect waves-light btn" href="index.jsp"><i class="material-icons right">home</i>Página Inicial</a>
             </div>
         </div>
