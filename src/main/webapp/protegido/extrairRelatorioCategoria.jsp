@@ -74,7 +74,6 @@
         <button class="btn waves-effect waves-light" type="submit" id="adicionar">Buscar
             <i class="material-icons right">search</i>
         </button>
-    </form>
     <table class="striped">
         <thead style="text-align: left">
             <tr>

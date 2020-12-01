@@ -50,7 +50,7 @@ ativo INTEGER,
 foreign key (Unidade_codUnidade) references Unidade(codUnidade)
 );
 insert into Funcionario(nome,cpf,email,celular,ativo,Unidade_codUnidade) values('luanz','500.987.987-98','luanz@gmail.com',"(11)5555-9874",1,1);
-select * from usuario inner join Funcionario on Funcionario_codFuncionario = codFuncionario where ativo=1;
+
 create table usuario(
 codUsuario integer auto_increment primary KEY,
 login VARCHAR(150),
@@ -59,7 +59,7 @@ cargo VARCHAR(150),
 Funcionario_codFuncionario INTEGER,
 FOREIGN KEY(Funcionario_codFuncionario) references Funcionario(codFuncionario)
 );
-insert into usuario(login,senha,cargo,Funcionario_codFuncionario) values('admin','$2a$12$aQUd4x3JSJWz7QMzuEGIYOeVNB0ZzdhjvbjzorTN9LOliw4DuLuxq','Gerente',2);
+insert into usuario(login,senha,cargo,Funcionario_codFuncionario) values('admin','$2a$12$aQUd4x3JSJWz7QMzuEGIYOeVNB0ZzdhjvbjzorTN9LOliw4DuLuxq','Gerente',1);
 
 create table tades.venda(
 codVenda INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,

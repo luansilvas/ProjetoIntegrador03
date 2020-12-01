@@ -8,6 +8,7 @@ package br.senac.sp.entidade;
 /**
  *
  * @author luans
+ * @author eduardo
  */
 import lombok.Getter;
 import lombok.Setter;
