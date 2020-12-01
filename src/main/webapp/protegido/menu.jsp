@@ -70,7 +70,7 @@
 
                     <li class="white"><a href="<c:url value="/Loja"/>"><i><img src="icons\store.png"></i>Loja</a> 
 
-                    <li class="white"><a href="<c:url value="/ListarCliente"/>"><i><img src="..\protegido\icons\customer.png"></i>Clientes</a> 
+                    <li class="white"><a href="<c:url value="/ListarCliente"/>"><i><img src="icons\customer.png"></i>Clientes</a> 
                     <li class="white"><a href="<c:url value="/ListarProdutos"/>"><i><img src="icons\product.png"></i>Produtos</a> 
                     <li class="white"><a href="<c:url value="/ListarFuncionario"/>"><i><img src="icons\employee.png"></i>Funcionários<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a>
 

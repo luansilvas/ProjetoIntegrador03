@@ -15,7 +15,7 @@
     <body>
 
         <div class="row" id="formulario">
-            <form class="col s12" action="CadastrarProduto" method="POST">
+            <form class="col s12" action="CadastrarProduto   <c:url value="/CadastrarProduto"/>" method="POST">
                 <div class="row">
                     <div class="input-field col s4">
                         <input id="titulo" type="text" class="" name="titulo">

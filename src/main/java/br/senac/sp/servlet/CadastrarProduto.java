@@ -38,7 +38,7 @@ public class CadastrarProduto extends HttpServlet {
         prod.setCodUnidade(Integer.parseInt(request.getParameter("unidade")));
         prod.setStatus(1);
         if (ProdutoDAO.addProduto(prod)) {
-            response.sendRedirect("sucessoProduto.jsp?codProd");
+            response.sendRedirect("protegido/sucessoProduto.jsp?codProd");
 
         }else{
                    
