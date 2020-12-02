@@ -27,31 +27,38 @@
 
         <div class="row" id="links">
             <div class="col s12">
-                <div class="select-field col s3"><a class="btn-flat"  id="" href="ListarVendas">geral<i class="material-icons right"></i></a></div>
-                <div class="select-field col s3"><a class="btn-flat"  id="" href="ListarVendasUnidade">unidade<i class="material-icons right"></i></a></div>
-                <div class="select-field col s3"><a class="btn-flat"  id="" href="ListarVendasCliente">Cliente<i class="material-icons right"></i></a></div>
-                <div class="select-field col s3"><a class="btn-flat"  id="" href="ListarVendasCategoria">categoria<i class="material-icons right"></i></a></div>
+                <div class="select-field col s3"><a class="btn-flat"  id="" href="<c:url value="/ListarVendas"/>">geral<i class="material-icons right"></i></a></div>
+                        <c:if  test="${sessionScope.usuario.codUnidade eq 1}">
+                    <div class="select-field col s3"><a class="btn-flat"  id=""href="<c:url value="/ListarVendasUnidade"/>">unidade<i class="material-icons right"></i></a></div>
+                        </c:if>
+                <div class="select-field col s3"><a class="btn-flat"  id="" href="<c:url value="/ListarVendasCliente"/>">Cliente<i class="material-icons right"></i></a></div>
+                <div class="select-field col s3"><a class="btn-flat"  id="" href="<c:url value="/ListarVendasCategoria"/>">Categoria<i class="material-icons right"></i></a></div>
             </div>
         </div>
 
         <h1>Relatório geral - Unidade</h1>
         <div class="row" id="formulario">
 
-            <form class="col s12" action="ListarVendasUnidade" method="POST">
+            <form class="col s12" action="<c:url value="/ListarVendasUnidade"/>" method="POST">
 
                 <div class="select-field col s4">
                     <label>unidade</label>
-                    <select class="browser-default" id = "unidade" name="codUnidade" required>
-                        <option value="" disabled selected>Unidade</option>
-                        <option value="1">Matriz</option>
-                        <option value="2">Campina Grande</option>                           
-                        <option value="3">Brasília</option>
-                        <option value="4">Joinville</option>
-
+                    <select class="browser-default" id = "unidade" name="codUnidade" style="border:none" required>
+                        <option value="${sessionScope.usuario.codUnidade}" selected>Unidade</option>
+                        <c:if  test="${sessionScope.usuario.codUnidade eq 1}">
+                            <option value="1">Matriz</option>
+                            <option value="2">Campina Grande</option>                           
+                            <option value="3">Brasília</option>
+                            <option value="4">Joinville</option>
+                            <option value="5">Geral</option>
+                        </c:if>
                     </select>
                 </div>
 
+                <div class="input-field col s4">
+                    <input id="dia" type="date" class="validate" name="dia" required>
 
+                </div>
         </div>
         <button class="btn waves-effect waves-light" type="submit" id="adicionar">Buscar
             <i class="material-icons right">search</i>
@@ -60,7 +67,7 @@
     <table class="striped">
         <thead style="text-align: left">
             <tr>
-                <th>Código</th>
+                <th>Transação</th>
                 <th>Valor item</th>
                 <th>CPF cliente</th>
                 <th>data e hora</th>
@@ -86,8 +93,8 @@
 
                 </tr>
             </c:forEach>
-                <td>Total:</td>
-                <td id="total"></td>
+        <td>Total:</td>
+        <td id="total"></td>
 
         </tbody>
 
@@ -114,17 +121,17 @@
 
         }
     }
-    
-     $(function () {
 
-                var valorCalculado = 0;
+    $(function () {
 
-                $(".valorproduto").each(function () {
-                    valorCalculado += parseInt($(this).text());
-                });
-                $("#total").text(valorCalculado);
+        var valorCalculado = 0;
 
-            });
+        $(".valorproduto").each(function () {
+            valorCalculado += parseInt($(this).text());
+        });
+        $("#total").text(valorCalculado);
+
+    });
 </script>
 </body>
 <style>

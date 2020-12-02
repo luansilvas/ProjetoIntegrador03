@@ -16,7 +16,7 @@
         <div class="row" id="formulario">
             <form class="col s12" action="<c:url value="/CadastrarCliente"/>" method="POST">
                 <div class="row">
-                    <div class="input-field col s4">
+                    
                         <input id="nome" type="text" class="" name="nome">
                         <label for="nome">nome</label>
                     </div>
@@ -32,16 +32,7 @@
                         <input id="telefone" type="tel" class="" name="telefone">
                         <label for="telefone">Telefone</label>
                     </div>
-                    <div class="select-field col s4">
-                        <label>unidade</label>
-                        <select class="browser-default" id = "unidade" name="unidade" required="">
-                            <option value="" disabled selected>Unidade</option>
-                            <option value="1">Matriz</option>
-                            <option value="2">Campina Grande</option>                           
-                            <option value="3">Brasília</option>
-                            <option value="4">Joinville</option>
-                        </select>
-                    </div>
+
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" id="adicionar">Enviar
                     <i class="material-icons right">send</i>

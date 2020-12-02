@@ -56,10 +56,8 @@
                                 <td class="valorproduto">${produto.valor}</td>
 
                                 <td>
-                                    <a href="verProduto?codProduto=${produto.codProduto}" target="blank"><i class="material-icons">search</i></a>
-                                   <!-- <a onClick="excluir(${produto.codProdutoVenda})"><i class="material-icons">remove_shopping_cart</i></a>-->
+                                    <a href="<c:url value="/verProduto?codProduto=${produto.codProduto}"/>" target="blank"><i class="material-icons">search</i></a>                                 
                                 </td>
-
                             </tr>
                         </c:forEach>
                         <tr>
@@ -72,6 +70,7 @@
                     </tbody>
 
                 </table>
+                            <a class="waves-effect waves-light btn" href="<c:url value="/ListarVendas"/>"> <i class="material-icons left">arrow_back</i>Vendas</a>
 
             </div>
         </c:if>

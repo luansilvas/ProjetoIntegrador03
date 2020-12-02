@@ -13,64 +13,57 @@
         <title>Cadastrar Cliente</title>
     </head>
     <body>
-        
-            <div class="row" id="formulario">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s4">
-                            <input id="nome" type="text" class="" name="nome" value="${func.nome}" readonly>
-                            <label for="nome">nome</label>
-                        </div>
-                        <div class="input-field col s4">
-                            <input id="cpf" type="text" class="" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required="" value="${func.cpf}">
-                            <label for="cpf">CPF</label>
-                        </div>
-                        <div class="input-field col s4">
-                            <input id="email" type="email" class="" name="email" value="${func.email}">
-                            <label for="email">E-mail</label>
-                        </div>
-                        <div class="input-field col s4">
-                            <input id="telefone" type="tel" class="" name="telefone" value="${func.celular}">
-                            <label for="telefone">Telefone</label>
-                        </div>
-                        <div class="select-field col s4">
-                            <label>unidade</label>
-                            <select class="browser-default" id = "unidade" name="unidade" required="">
-                                <option value="${func.codUnidade}" selected>${func.codUnidade}</option>
-                                <option value="1">Matriz</option>
-                                <option value="2">Campina Grande</option>                           
-                                <option value="3">Brasília</option>
-                                <option value="4">Joinville</option>
-                            </select>
-                        </div>
+
+        <div class="row" id="formulario">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="nome" type="text" class="" name="nome" value="${func.nome}" readonly>
+                        <label for="nome">nome</label>
                     </div>
-                    <div class="row">
+                    <div class="input-field col s4">
+                        <input id="cpf" type="text" class="" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required="" value="${func.cpf}" readonly>
+                        <label for="cpf">CPF</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="email" type="email" class="" name="email" value="${func.email}" readonly>
+                        <label for="email">E-mail</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="telefone" type="tel" class="" name="telefone" value="${func.celular}" readonly>
+                        <label for="telefone">Telefone</label>
+                    </div>
+                    <div class="select-field col s4">
+                        <label>unidade</label>
+                        <select class="browser-default" id = "unidade" name="unidade" required="" readonly>
+                            <option value="${func.codUnidade}" selected>${func.codUnidade}</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
 
 
-                        <div class="select-field col s4">
-                            <label>unidade</label>
-                            <select class="browser-default" id = "cargo" name="cargo" required="">
-                                <option value="${func.cargo}"selected>${func.cargo}</option>
-                                <option value="Gerente">Gerente</option>
-                                <option value="Vendedor">Vendedor</option>                           
-                                <option value="Analista BackOffice">Analista BackOffice</option>
-                                <option value="Analista TI">Analista TI</option>
-                            </select>
-                        </div>
-                        <div class="input-field col s4">
-                            <input id="nome" type="text" class="" name="login" value="${func.login}">
-                            <label for="nome">login</label>
-
-                        </div>
+                    <div class="select-field col s4">
+                        <label>unidade</label>
+                        <select class="browser-default" id = "cargo" name="cargo" required="" readonly>
+                            <option value="${func.cargo}"selected>${func.cargo}</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="nome" type="text" class="" name="login" value="${func.login}" readonly>
+                        <label for="nome">login</label>
 
                     </div>
-                    <input id="nome" type="text" class="" name="codFuncionario" style="display:none" value="${func.codFuncionario}">
+
+                </div>
+                <input id="nome" type="text" class="" name="codFuncionario" style="display:none" value="${func.codFuncionario}">
 
 
-                </form>
-                    <a  href="<c:url value="/ListarFuncionario"/>">Voltar</a>
+            </form>
 
-            </div>
+            <a class="waves-effect waves-light btn" href="<c:url value="/ListarFuncionario"/>"> <i class="material-icons left">arrow_back</i>Voltar</a>
+        </div>
 
         <script>
             $('#textarea1').val('New Text');

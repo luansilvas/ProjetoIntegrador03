@@ -148,7 +148,7 @@ public class FuncionarioDAO {
         return func;
     }
 
-    public static List<Usuario> getFuncionarios() {
+    public static List<Usuario> getFuncionarios(int codFuncionario) {
 
         List<Usuario> listaFuncionarios = new ArrayList();
         ResultSet rs = null;
@@ -157,7 +157,8 @@ public class FuncionarioDAO {
 
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from usuario inner join Funcionario on Funcionario_codFuncionario = codFuncionario where ativo=1");
+            instrucaoSQL = conexao.prepareStatement("select * from usuario inner join Funcionario on Funcionario_codFuncionario = codFuncionario where ativo=1 and codFuncionario<>?");
+            instrucaoSQL.setInt(1, codFuncionario);
             rs = instrucaoSQL.executeQuery();
  
             while (rs.next()) {
@@ -172,8 +173,7 @@ public class FuncionarioDAO {
                 String email = rs.getString("email");
                 String celular = rs.getString("celular");
                 int codUnidade = rs.getInt("Unidade_codUnidade");
-                
-                System.out.println("OLHA ESSSSSE USUÁRIO "+nome);
+  
 
                 Usuario func = new Usuario(codUsuario, log, cargo, pass, codFunc, idFuncionario, nome, cpf, email, celular, codUnidade);
 

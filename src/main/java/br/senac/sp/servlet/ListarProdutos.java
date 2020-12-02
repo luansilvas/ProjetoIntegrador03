@@ -9,6 +9,7 @@ import br.senac.sp.dao.ProdutoDAO;
 import br.senac.sp.dao.vendaDAO;
 import br.senac.sp.entidade.Produto;
 import br.senac.sp.entidade.ProdutoUnidade;
+import br.senac.sp.entidade.Usuario;
 import br.senac.sp.entidade.Venda;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,26 +38,62 @@ public class ListarProdutos extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            HttpSession sessao = httpRequest.getSession();
+            Usuario usuario = (Usuario) sessao.getAttribute("usuario");
 
-        List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos();
-        request.setAttribute("listaProdutos", listaProdutos);
+            if (usuario.getCargo().equals("Analista BackOffice")) {
+                List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos(usuario.getCodUnidade());
+                request.setAttribute("listaProdutos", listaProdutos);
 
-        RequestDispatcher requestDispatcher = getServletContext()
-                .getRequestDispatcher("/protegido/listaProdutos.jsp");
-        requestDispatcher.forward(request, response);
+                RequestDispatcher requestDispatcher = getServletContext()
+                        .getRequestDispatcher("/protegido/listaProdutos.jsp");
+                requestDispatcher.forward(request, response);
+            } else if (!usuario.getCargo().equals("Analista BackOffice")) {
+                response.sendRedirect(request.getContextPath() + "/protegido/semAutorizacao.jsp");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/login.jsp");
+
+            }
+
+        } catch (Exception e) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+
+        }
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String categoria = request.getParameter("categoria");
+        try {
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            HttpSession sessao = httpRequest.getSession();
+            Usuario usuario = (Usuario) sessao.getAttribute("usuario");
 
-        int codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
+            if (usuario.getCargo().equals("Analista BackOffice")) {
 
-        List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos(categoria,codUnidade);
-        request.setAttribute("listaProdutos", listaProdutos);
+                String categoria = request.getParameter("categoria");
 
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/protegido/listaProdutos.jsp");
-        requestDispatcher.forward(request, response);
+                int codUnidade = usuario.getCodUnidade();
+
+                List<ProdutoUnidade> listaProdutos = ProdutoDAO.getProdutos(categoria, codUnidade);
+                request.setAttribute("listaProdutos", listaProdutos);
+
+                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/protegido/listaProdutos.jsp");
+                requestDispatcher.forward(request, response);
+
+            }else if (!usuario.getCargo().equals("Analista BackOffice")) {
+                response.sendRedirect(request.getContextPath() + "/protegido/semAutorizacao.jsp");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/login.jsp");
+
+            }
+        } catch (Exception e) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+        }
     }
 }

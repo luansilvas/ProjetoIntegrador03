@@ -67,19 +67,25 @@
 
 
 
+                    <c:if test="${sessionScope.usuario.cargo eq 'Vendedor'}">
+                        <li class="white"><a href="<c:url value="/Loja?codFuncionario=${sessionScope.usuario.codFuncionario}"/>"><i><img src="<c:url value="/icons/store.png"/>"></i>Loja</a> 
+                                </c:if>
+                                <c:if test="${sessionScope.usuario.cargo eq 'Vendedor'}">
+                        <li class="white"><a href="<c:url value="/ListarCliente"/>"><i><img src="<c:url value="/icons/customer.png"/>"></i>Clientes</a> 
+                                </c:if>
+                                <c:if test="${sessionScope.usuario.cargo eq 'Analista BackOffice'}">
 
-                    <li class="white"><a href="<c:url value="/Loja"/>"><i><img src="icons\store.png"></i>Loja</a> 
-
-                    <li class="white"><a href="<c:url value="/ListarCliente"/>"><i><img src="icons\customer.png"></i>Clientes</a> 
-                    <li class="white"><a href="<c:url value="/ListarProdutos"/>"><i><img src="icons\product.png"></i>Produtos</a> 
-                    <li class="white"><a href="<c:url value="/ListarFuncionario"/>"><i><img src="icons\employee.png"></i>Funcionários<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a>
-
+                        <li class="white"><a href="<c:url value="/ListarProdutos"/>"><i><img src="<c:url value="/icons/product.png"/>"></i>Produtos</a> 
+                                </c:if>   
+                                <c:if test="${sessionScope.usuario.cargo eq 'Analista TI'}">
+                        <li class="white"><a href="<c:url value="/ListarFuncionario"/>"><i><img src="<c:url value="/icons/employee.png"/>"></i>Funcionários<span class="new badge right yellow darken-3" data-badge-caption="Novo"></span></a>
+                                </c:if>   
 
 
                         <c:if test="${sessionScope.usuario.cargo eq 'Gerente'}">
-                        <li class="white"><a href="<c:url value="/ListarVendas"/>"><i><img src="icons\bar-chart.png"></i>Vendas</a> 
+                        <li class="white"><a href="<c:url value="/ListarVendas"/>"><i><img src="<c:url value="/icons/bar-chart.png"/>"></i>Vendas</a> 
                                 </c:if> 
-                    <li class="white"><a href="index.jsp" ><i><img src="icons\bug.png"></i>Chamado<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a></li>    
+                    <li class="white"><a href="index.jsp" ><i><img src="<c:url value="/icons/bug.png"/>"></i>Chamado<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a></li>    
                 </ul>
 
             </div>

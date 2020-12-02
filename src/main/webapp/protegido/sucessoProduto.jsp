@@ -18,8 +18,8 @@
         <div class="acoes" style="margin-left: 30%;margin-top: 5%;">
 
 
-            <a class="waves-effect waves-light btn" href="ListarProdutos"><i class="material-icons left">arrow_back</i>Produtos</a>
-            <a class="waves-effect waves-light btn" href="index.jsp"><i class="material-icons right">home</i>Página Inicial</a>
+            <a class="waves-effect waves-light btn" href="<c:url value="/ListarProdutos"/>"  > <i class="material-icons left">arrow_back</i>Produtos</a>
+            <a class="waves-effect waves-light btn" href="<c:url value="index.jsp"/>"><i class="material-icons right">home</i>Página Inicial</a>
         </div>
         </div>
     </body>

@@ -11,6 +11,7 @@ import br.senac.sp.dao.ProdutoVendaDAO;
 import br.senac.sp.dao.vendaDAO;
 import br.senac.sp.entidade.Cliente;
 import br.senac.sp.entidade.ProdutoUnidade;
+import br.senac.sp.entidade.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -19,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,12 +41,17 @@ public class RegistrarVenda extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            HttpSession sessao = httpRequest.getSession();
+            Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+
             String CPF = request.getParameter("cpf");
-            int codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
-            int codFuncionario = Integer.parseInt(request.getParameter("codFuncionario"));
+            int codUnidade = usuario.getCodUnidade();
+            int codFuncionario = usuario.getCodFuncionario();
 
             double total = 0.0;
-            List<ProdutoUnidade> listaProdutoVenda = ProdutoVendaDAO.getProdutos();
+            List<ProdutoUnidade> listaProdutoVenda = ProdutoVendaDAO.getProdutosFuncionario(codFuncionario);
             if (listaProdutoVenda.isEmpty()) {
                 throw new RuntimeException("Lista vazia");
             }
@@ -54,19 +61,19 @@ public class RegistrarVenda extends HttpServlet {
             Cliente cli = ClienteDAO.getClientes(CPF);
 
             int codVenda = vendaDAO.newSale(total, codFuncionario, cli.getCodCliente(), codUnidade);
-            
-                        out.println(codVenda);
+
+
 
             if (!ProdutoVendaDAO.FecharProdutoVenda(codVenda, codFuncionario)) {
-                response.sendRedirect("sucessoVenda.jsp");
+                response.sendRedirect("protegido/sucessoVenda.jsp");
             } else {
                 vendaDAO.cancelarVenda(codVenda);
-                response.sendRedirect("erroVenda.jsp");
+                response.sendRedirect("protegido/erroVenda.jsp");
 
             }
 
         } catch (Exception e) {
-            response.sendRedirect("erroVenda.jsp");
+            response.sendRedirect("protegido/erroVenda.jsp");
 
         }
 

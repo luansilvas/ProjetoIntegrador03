@@ -33,7 +33,7 @@ public class verProduto extends HttpServlet {
         request.setAttribute("produto", produto);
 
         RequestDispatcher requestDispatcher = getServletContext()
-                .getRequestDispatcher("/verProduto.jsp");
+                .getRequestDispatcher("/protegido/verProduto.jsp");
         requestDispatcher.forward(request, response);
 
     }

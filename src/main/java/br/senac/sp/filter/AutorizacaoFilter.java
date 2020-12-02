@@ -38,20 +38,33 @@ public class AutorizacaoFilter implements Filter {
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
+  
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        
+
         HttpSession sessao = httpRequest.getSession();
-        
-        if (sessao.getAttribute("usuario")==null) {
-            httpResponse.sendRedirect(httpRequest.getContextPath()+"/login.jsp");
+
+        if (sessao.getAttribute("usuario") == null) {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
         }
-        
-        
+        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+        String url = httpRequest.getRequestURI();
    
-        
-        
-        
+        if (url.contains("loja") && !usuario.getCargo().equals("Vendedor")) {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/semAutorizacao.jsp");
+        }
+        if (url.contains("Cliente") && !usuario.getCargo().equals("Vendedor")) {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/semAutorizacao.jsp");
+        }
+        if (url.contains("Funcionario") && !usuario.getCargo().equals("Analista TI")) {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/semAutorizacao.jsp");
+        }
+
+        if (url.contains("Relatorio") && !usuario.getCargo().equals("Gerente")) {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/semAutorizacao.jsp");
+        }
+ 
+
     }
 
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
@@ -59,6 +72,7 @@ public class AutorizacaoFilter implements Filter {
         if (debug) {
             log("AutorizacaoFilter:DoAfterProcessing");
         }
+ 
 
         // Write code here to process the request and/or response after
         // the rest of the filter chain is invoked.

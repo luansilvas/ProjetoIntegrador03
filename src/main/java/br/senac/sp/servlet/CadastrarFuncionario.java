@@ -40,7 +40,7 @@ public class CadastrarFuncionario extends HttpServlet {
 
         FuncionarioDAO.addFuncionario(func);
 
-        response.sendRedirect("protegido/sucessoCliente.jsp");
+        response.sendRedirect("protegido/sucessoFuncionario.jsp");
 
     }
 

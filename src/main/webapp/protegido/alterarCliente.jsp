@@ -32,16 +32,7 @@
                         <input id="telefone" type="tel" class="" name="telefone" value="${cliente.telefone}">
                         <label for="telefone">Telefone</label>
                     </div>
-                    <div class="select-field col s4">
-                        <label>unidade</label>
-                        <select class="browser-default" id = "unidade" name="unidade" items="${unidade}">
-                            <option value="${unidade.codUnidade}" selected>${unidade.nome}</option>
-                            <option value="1">Matriz</option>
-                            <option value="2">Campina Grande</option>                           
-                            <option value="3">Brasília</option>
-                            <option value="4">Joinville</option>
-                        </select>
-                    </div>
+
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" id="adicionar">Enviar
                     <i class="material-icons right">send</i>

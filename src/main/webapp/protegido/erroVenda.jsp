@@ -18,8 +18,8 @@
         <div class="acoes" style="margin-left: 30%;margin-top: 5%;">
 
 
-            <a class="waves-effect waves-light btn" href="FecharPedido"><i class="material-icons left">arrow_back</i>Tentar novamente</a>
-            <a class="waves-effect waves-light btn" href="CancelarProdutoVenda"><i class="material-icons right">home</i>Nova venda</a>
+            <a class="waves-effect waves-light btn" href="<c:url value="/FecharPedido"/>" ><i class="material-icons left">arrow_back</i>Tentar novamente</a>
+            <a class="waves-effect waves-light btn" href="<c:url value="/CancelarProdutoVenda"/>" ><i class="material-icons right">home</i>Nova venda</a>
         </div>
         </div>
     </body>

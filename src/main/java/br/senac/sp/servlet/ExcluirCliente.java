@@ -23,11 +23,8 @@ public class ExcluirCliente extends HttpServlet {
             throws ServletException, IOException {
 
         String cpf = request.getParameter("cpf");
-        
-        if (ClienteDAO.deleteCliente(cpf)) {
-            response.sendRedirect("protegido/sucessoCliente.jsp");
-        } else {
-            response.sendRedirect("protegido/ListarClientes");
-        }
+        ClienteDAO.deleteCliente(cpf);
+        response.sendRedirect("ListarCliente");
     }
+
 }

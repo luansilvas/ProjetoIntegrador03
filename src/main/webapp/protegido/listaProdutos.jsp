@@ -29,23 +29,10 @@
 
 
         <div class="tabela">
-            <a class="btn-flat"  id="adicionar" href="ListarProdutos">Limpar Filtros<i class="material-icons right">refresh</i></a>
-            <a class="btn-flat"  id="adicionar" href="cadastrarProduto.jsp">add<i class="material-icons right">add</i></a>
-            <form class="col s12" action="ListarProdutos" method="POST">
+            <a class="btn-flat"  id="adicionar" href="<c:url value="/ListarProdutos"/>">Limpar Filtros<i class="material-icons right">refresh</i></a>
+            <a class="btn-flat"  id="adicionar" href="<c:url value="/protegido/cadastrarProduto.jsp"/>">add<i class="material-icons right">add</i></a>
+            <form class="col s12" action="<c:url value="ListarProdutos"/>" method="POST">
                 <div class="row">
-                    <div class="select-field col s4">
-                        <label>unidade</label>
-                        <select class="browser-default" id = "unidade" name="codUnidade" required>
-                            <option value="" disabled selected>Unidade</option>
-                            <option value="1">Matriz</option>
-                            <option value="2">Campina Grande</option>                           
-                            <option value="3">Brasília</option>
-                            <option value="4">Joinville</option>
-
-                        </select>
-                    </div>
-
-
                     <div class="select-field col s4">
                         <label>Categoria</label>
                         <select class="browser-default" id="categoria" name="categoria" required>
@@ -89,9 +76,9 @@
                             <td>${produto.valor}</td>
                             <td>${produto.quantidade}</td>
                             <td>
-                                <a href="verProduto?codProduto=${produto.codProduto}" target="blank"><i class="material-icons">search</i></a>
-                                <a href="AlterarProduto?codProduto=${produto.codProduto}" ><i class="material-icons">edit</i></a>
-                                <a onClick="excluir(${produto.codProduto})"><i class="material-icons">delete</i></a>
+                                <a href="<c:url value="/verProduto?codProduto=${produto.codProduto}"/>" target="blank"><i class="material-icons">search</i></a>
+                                <a href="<c:url value="/AlterarProduto?codProduto=${produto.codProduto}"/>"><i class="material-icons">edit</i></a>
+                                <a href="<c:url value="/ExcluirProduto?codProduto=${produto.codProduto}"/>"><i class="material-icons">delete</i></a>
                             </td>
 
                         </tr>

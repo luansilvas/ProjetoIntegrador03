@@ -27,38 +27,41 @@
 
         <div class="row" id="links">
             <div class="col s12">
-                <div class="select-field col s3"><a class="btn-flat"  id="" href="ListarVendas">geral<i class="material-icons right"></i></a></div>
-                <div class="select-field col s3"><a class="btn-flat"  id="" href="ListarVendasUnidade">unidade<i class="material-icons right"></i></a></div>
-                <div class="select-field col s3"><a class="btn-flat"  id="" href="ListarVendasCliente">Cliente<i class="material-icons right"></i></a></div>
-                <div class="select-field col s3"><a class="btn-flat"  id="" href="ListarVendasCategoria">categoria<i class="material-icons right"></i></a></div>
+                <div class="select-field col s3"><a class="btn-flat"  id="" href="<c:url value="/ListarVendas"/>">geral<i class="material-icons right"></i></a></div>
+                        <c:if  test="${sessionScope.usuario.codUnidade eq 1}">
+                    <div class="select-field col s3"><a class="btn-flat"  id=""href="<c:url value="/ListarVendasUnidade"/>">unidade<i class="material-icons right"></i></a></div>
+                        </c:if>
+                <div class="select-field col s3"><a class="btn-flat"  id="" href="<c:url value="/ListarVendasCliente"/>">Cliente<i class="material-icons right"></i></a></div>
+                <div class="select-field col s3"><a class="btn-flat"  id="" href="<c:url value="/ListarVendasCategoria"/>">Categoria<i class="material-icons right"></i></a></div>
             </div>
         </div>
 
         <h1>Relatório geral</h1>
         <div class="row" id="formulario">
 
-            <form class="col s12" action="ListarVendas" method="POST">
+            <form class="col s12" action="<c:url value="/ListarVendas"/>" method="POST">
 
-                <div class="select-field col s4">
+                <div class="select-field col s3">
                     <label>unidade</label>
                     <select class="browser-default" id = "unidade" name="codUnidade" style="border:none" required>
-                        <option value="" disabled selected>Unidade</option>
-                        <option value="1">Matriz</option>
-                        <option value="2">Campina Grande</option>                           
-                        <option value="3">Brasília</option>
-                        <option value="4">Joinville</option>
-
+                        <option value="${sessionScope.usuario.codUnidade}" selected>Unidade</option>
+                        <c:if  test="${sessionScope.usuario.codUnidade eq 1}">
+                            <option value="1">Matriz</option>
+                            <option value="2">Campina Grande</option>                           
+                            <option value="3">Brasília</option>
+                            <option value="4">Joinville</option>
+                        </c:if>
                     </select>
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s3">
                     <input id="valor" type="text" class="validate" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" name="cpf" required>
                     <label for="valor">CPF</label>
                 </div>
 
 
-                <div class="select-field col s4">
+                <div class="select-field col s3">
                     <label>Categoria</label>
-                    <select class="browser-default" id="categoria" name="categoria" required>
+                    <select class="browser-default" id="categoria" name="categoria" style="border:none" required>
                         <option value="" disabled selected>Categoria</option>
                         <option value="Mesa comum">Mesa comum</option>
                         <option value="Bancada com base">Bancada com base</option>                           
@@ -69,7 +72,9 @@
                         <option value="Armário">Armário</option>
                         <option value="Outro">Outro</option>
                     </select>
-
+                </div>
+                <div class="input-field col s3">
+                    <input id="dia" type="date" class="validate" name="dia" required>
 
                 </div>
 
@@ -82,11 +87,11 @@
     <table class="striped">
         <thead style="text-align: left">
             <tr>
-                <th>Código</th>
+                <th>Transação</th>
                 <th>Valor item</th>
-
                 <th>CPF cliente</th>
                 <th>data e hora</th>
+                <th>Categoria</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -111,7 +116,7 @@
             <tr>
                 <td>Total:</td>
                 <td id="total"></td>
-    
+
 
             </tr>
         </tbody>

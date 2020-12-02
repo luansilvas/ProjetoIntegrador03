@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 public class ClienteDAO {
 
     public static List<Cliente> getClientes() {
-        
+
         List<Cliente> listaClientes = new ArrayList();
         ResultSet rs;
         Connection conexao;
@@ -35,7 +35,7 @@ public class ClienteDAO {
 
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from Cliente");
+            instrucaoSQL = conexao.prepareStatement("select * from Cliente where ativo = 1");
             rs = instrucaoSQL.executeQuery();
 
             while (rs.next()) {
@@ -51,19 +51,49 @@ public class ClienteDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+        return listaClientes;
+    }
+
+    public static List<Cliente> getClientes(int idUnidade) {
+
+        List<Cliente> listaClientes = new ArrayList();
+        ResultSet rs;
+        Connection conexao;
+        PreparedStatement instrucaoSQL;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("select * from Cliente where Unidade_codUnidade=? and ativo=1;");
+            instrucaoSQL.setInt(1, idUnidade);
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                String nome = rs.getString("nome");
+                String cpf = rs.getString("cpf");
+                String email = rs.getString("email");
+                String telefone = rs.getString("telefone");
+                int codUnidade = rs.getInt("Unidade_codUnidade");
+
+                listaClientes.add(new Cliente(nome, cpf, email, telefone, codUnidade));
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return listaClientes;
     }
 
     public static boolean addCliente(Cliente cliente) {
-        
+
         boolean retorno = false;
         Connection conexao;
         PreparedStatement instrucaoSQL = null;
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("insert into Cliente(nome,cpf,email,telefone,Unidade_codUnidade) values(?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+            instrucaoSQL = conexao.prepareStatement("insert into Cliente(nome,cpf,email,telefone,ativo,Unidade_codUnidade) values(?,?,?,?,1,?);", Statement.RETURN_GENERATED_KEYS);
 
             instrucaoSQL.setString(1, cliente.getNome());
             instrucaoSQL.setString(2, cliente.getCpf());
@@ -84,7 +114,7 @@ public class ClienteDAO {
                     throw new SQLException("Falha ao obter o código do Cliente.");
                 }
             } else {
-                
+
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -110,7 +140,7 @@ public class ClienteDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("delete from cliente where cpf=?");
+            instrucaoSQL = conexao.prepareStatement("update cliente set ativo = 0 where cpf=? and ativo = 1;");
 
             instrucaoSQL.setString(1, cpf);
             int linhasAfetadas = instrucaoSQL.executeUpdate();
@@ -147,7 +177,7 @@ public class ClienteDAO {
 
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from Cliente where cpf=?");
+            instrucaoSQL = conexao.prepareStatement("select * from Cliente where cpf=? and ativo = 1;");
             instrucaoSQL.setString(1, cpf);
             rs = instrucaoSQL.executeQuery();
 
@@ -157,7 +187,7 @@ public class ClienteDAO {
                 String email = rs.getString("email");
                 String telefone = rs.getString("telefone");
                 int codUnidade = rs.getInt("Unidade_codUnidade");
-                clientes = new Cliente(codCliente,nome, cpf, email, telefone, codUnidade);
+                clientes = new Cliente(codCliente, nome, cpf, email, telefone, codUnidade);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);

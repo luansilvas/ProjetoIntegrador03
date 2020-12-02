@@ -33,9 +33,9 @@
 
         <c:if test="${listaProdutoVenda != null}">
             <div class="tabela">
-                <a class="btn-flat"  id="loja" href="Loja">continuar<i class="material-icons left">shopping_cart</i></a>
+                <a class="btn-flat"  id="loja" href="<c:url value="/Loja"/>">continuar<i class="material-icons left">shopping_cart</i></a>
 
-                <a class="btn-flat"  id="adicionar" href="CancelarProdutoVenda">cancelar<i class="material-icons right">arrow_back</i></a>
+                <a class="btn-flat"  id="adicionar" href="<c:url value="/CancelarProdutoVenda"/>">cancelar<i class="material-icons right">arrow_back</i></a>
                 <table class="striped">
                     <thead style="text-align: left">
                         <tr>
@@ -56,8 +56,8 @@
                                 <td class="valorproduto">${produto.valor}</td>
 
                                 <td>
-                                    <a href="verProduto?codProduto=${produto.codProduto}" target="blank"><i class="material-icons">search</i></a>
-                                    <a onClick="excluir(${produto.codProdutoVenda})"><i class="material-icons">remove_shopping_cart</i></a>
+                                    <a href="<c:url value="/verProduto?codProduto=${produto.codProduto}"/>" target="blank"><i class="material-icons">search</i></a>
+                                    <a href="<c:url value="/ExcluirProdutoVenda?codProdutoVenda=${produto.codProdutoVenda}"/>"><i class="material-icons">remove_shopping_cart</i></a>
                                 </td>
 
                             </tr>
@@ -72,31 +72,15 @@
                     </tbody>
 
                 </table>
-                <form class="col s12" action="RegistrarVenda" method="POST">
+                <form class="col s12" action="<c:url value="/RegistrarVenda"/>" method="POST">
                     <div class="row">
 
 
-                        <div class="select-field col s3">
-                            <label>unidade</label>
-                            <select class="browser-default" id = "unidade" name="codUnidade">
-                                <option value="" disabled selected>Unidade</option>
-                                <option value="1">Matriz</option>
-                                <option value="2">Campina Grande</option>                           
-                                <option value="3">Brasília</option>
-                                <option value="4">Joinville</option>
-                            </select>
-                        </div>
                         <div class="input-field col s3">
                             <input id="cpf" type="text" class="validate" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" name="cpf" required>
                             <label for="cpf">CPF cliente</label>
                         </div>
 
-
-                        <div class="input-field col s3">
-
-                            <input id="matricula" type="text" class="validate" name="codFuncionario" pattern="[1-1]{1}"required>
-                            <label for="matricula">Matricula</label>
-                        </div>
 
 
                     </div>
@@ -132,16 +116,6 @@
 
         <script>
 
-            function excluir(codProduto) {
-                retorno = confirm("Você deseja realmente excluir esse produto da sua venda?");
-                if (retorno == true) {
-
-                    var destino = "ExcluirProdutoVenda?codProdutoVenda=";
-                    var tudo = destino + codProduto;
-                    window.location.href = tudo;
-
-                }
-            }
 
             $(function () {
 
