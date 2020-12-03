@@ -74,7 +74,7 @@
                 </table>
                 <a class="btn-flat"  id="adicionar" href="<c:url value="/ListarCliente"/>" target="blank">ver clientes<i class="material-icons right">person</i></a>
 
-                <a class="btn-flat"  id="adicionar" href="<c:url value="/CadastrarCliente"/>" target="blank">novo cliente<i class="material-icons right">person_add</i></a>
+                <a class="btn-flat"  id="adicionar" href="<c:url value="/protegido/cadastrarCliente.jsp"/>" target="blank">novo cliente<i class="material-icons right">person_add</i></a>
                 <form class="col s12" action="<c:url value="/RegistrarVenda"/>" method="POST">
                     <div class="row">
 

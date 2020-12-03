@@ -37,7 +37,7 @@
                     <li class="sidenav-header grey lighten-1">
                         <div class="row">
                             <div class="col s4" style="align-components:center;">
-                                <img src="icons\person.jpg" width="48px" height="48px" alt="" class="circle responsive-img valign profile-image">
+                                <img src="<c:url value="/icons/person.jpg"/>" width="48px" height="48px" alt="" class="circle responsive-img valign profile-image">
 
                             </div>
 
