@@ -72,6 +72,9 @@
                     </tbody>
 
                 </table>
+                <a class="btn-flat"  id="adicionar" href="<c:url value="/ListarCliente"/>" target="blank">ver clientes<i class="material-icons right">person</i></a>
+
+                <a class="btn-flat"  id="adicionar" href="<c:url value="/CadastrarCliente"/>" target="blank">novo cliente<i class="material-icons right">person_add</i></a>
                 <form class="col s12" action="<c:url value="/RegistrarVenda"/>" method="POST">
                     <div class="row">
 
@@ -79,9 +82,8 @@
                         <div class="input-field col s3">
                             <input id="cpf" type="text" class="validate" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" name="cpf" required>
                             <label for="cpf">CPF cliente</label>
+
                         </div>
-
-
 
                     </div>
                     <button class="btn waves-effect waves-light" type="submit" id="adicionar">Fechar

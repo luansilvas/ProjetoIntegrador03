@@ -46,7 +46,7 @@
                     
                     
                     <div class="select-field col s4">
-                        <label>unidade</label>
+                        <label>Cargo</label>
                         <select class="browser-default" id = "cargo" name="cargo" required="">
                             <option value="" disabled selected>Cargo</option>
                             <option value="Gerente">Gerente</option>

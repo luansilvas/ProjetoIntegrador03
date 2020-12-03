@@ -50,9 +50,7 @@ public class FuncionarioDAO {
                 if (generatedKeys.next()) {
 
                     func.setCodFuncionario(generatedKeys.getInt(1));
-                    
-                    
-                    System.out.println("NOVO USUÁRIO DE CÓDIGO "+generatedKeys.getInt(1) );
+
 
                 } else {
                     throw new SQLException("Falha ao obter o código do Funcionário.");
@@ -160,7 +158,7 @@ public class FuncionarioDAO {
             instrucaoSQL = conexao.prepareStatement("select * from usuario inner join Funcionario on Funcionario_codFuncionario = codFuncionario where ativo=1 and codFuncionario<>?");
             instrucaoSQL.setInt(1, codFuncionario);
             rs = instrucaoSQL.executeQuery();
- 
+
             while (rs.next()) {
                 int codUsuario = rs.getInt("codUsuario");
                 String cargo = rs.getString("cargo");
@@ -173,7 +171,6 @@ public class FuncionarioDAO {
                 String email = rs.getString("email");
                 String celular = rs.getString("celular");
                 int codUnidade = rs.getInt("Unidade_codUnidade");
-  
 
                 Usuario func = new Usuario(codUsuario, log, cargo, pass, codFunc, idFuncionario, nome, cpf, email, celular, codUnidade);
 
@@ -194,13 +191,14 @@ public class FuncionarioDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("update Funcionario set nome=?,cpf=?,email=?,celular=? where codFuncionario=?");
+            instrucaoSQL = conexao.prepareStatement("update Funcionario set nome=?,cpf=?,email=?,celular=?,Unidade_codUnidade=? where codFuncionario=?");
 
             instrucaoSQL.setString(1, func.getNome());
             instrucaoSQL.setString(2, func.getCpf());
             instrucaoSQL.setString(3, func.getEmail());
             instrucaoSQL.setString(4, func.getCelular());
-            instrucaoSQL.setInt(5, func.getCodFuncionario());
+            instrucaoSQL.setInt(5, func.getCodUnidade());
+            instrucaoSQL.setInt(6, func.getCodFuncionario());
             instrucaoSQL.execute();
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -218,7 +216,7 @@ public class FuncionarioDAO {
             } catch (SQLException ex) {
             }
         }
-        
+
         UsuarioDAO.updateFuncionario(func);
         return retorno;
 

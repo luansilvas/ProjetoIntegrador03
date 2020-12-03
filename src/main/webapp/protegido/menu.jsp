@@ -23,7 +23,7 @@
         <nav>
             <div class="nav-wrapper grey lighten-1">
                 <a href="index.jsp" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">arrow_forward_ios</i></a>
-                <a href="protegido/index.jsp" class="brand-logo"><img src="icons\logo_transparent.png" style="width: 70px"></a>
+                <a href="protegido/index.jsp" class="brand-logo"><img src="<c:url value="/icons/logo_transparent.png "/>"  style="width: 70px"></a>
                 <ul class="right hide">
                     <li><a href="https://codepen.io/collection/nbBqgY/" target="_blank">Sass</a></li>
                     <li><a href="https://codepen.io/collection/nbBqgY/" target="_blank">Components</a></li>
@@ -44,7 +44,7 @@
 
 
                             <div>
-                                <a class="btn-flat dropdown-button waves-effect waves-light white-text" href="#" data-activates="profile-dropdown">Funcionario<i class="mdi-navigation-arrow-drop-down"></i></a>
+                                <a class="btn-flat dropdown-button waves-effect waves-light white-text" href="#" data-activates="profile-dropdown">${sessionScope.usuario.nome}<i class="mdi-navigation-arrow-drop-down"></i></a>
                                 <!--
                                  <ul id="profile-dropdown" class="dropdown-content">
                                      <li><a href="#" ><i class="material-icons">person</i>Profile</a></li>

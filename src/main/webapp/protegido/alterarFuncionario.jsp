@@ -35,7 +35,7 @@
                         </div>
                         <div class="select-field col s4">
                             <label>unidade</label>
-                            <select class="browser-default" id = "unidade" name="unidade" required="">
+                            <select class="browser-default" id="unidade" name="unidade" required="">
                                 <option value="${func.codUnidade}" selected></option>
                                 <option value="1">Matriz</option>
                                 <option value="2">Campina Grande</option>                           
@@ -48,7 +48,7 @@
 
 
                         <div class="select-field col s4">
-                            <label>unidade</label>
+                            <label>cargo</label>
                             <select class="browser-default" id = "cargo" name="cargo" required="">
                                 <option value="${func.cargo}"selected>${func.cargo}</option>
                                 <option value="Gerente">Gerente</option>
@@ -63,7 +63,7 @@
 
                         </div>
                         <div class="input-field col s4">     
-                            <input id="nome" type="password" class="" name="senha">
+                            <input id="nome" type="password" class="" name="senha" required="">
                             <label for="nome">senha</label>
                         </div>
                     </div>

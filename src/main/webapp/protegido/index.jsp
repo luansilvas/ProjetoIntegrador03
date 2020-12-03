@@ -19,7 +19,7 @@
 
         <div class="carousel carousel-slider center">
 
-            <div class="carousel-item white-text" href="#one!" style="background-image: url('icons/tades_capa.png');background-position: center center;background-repeat: no-repeat;background-size: cover;">
+            <div class="carousel-item white-text" href="#one!" style="background-image: url('../icons/tades_capa.png');background-position: center center;background-repeat: no-repeat;background-size: cover;">
                 <h2><b>Seja bem-vindo a TADES!</b></h2>
                 <h5 class="white-text">A maior loja de móveis corporativos do país!</h5>
             </div>
